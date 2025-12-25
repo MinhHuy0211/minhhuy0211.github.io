@@ -1,0 +1,74 @@
+baseURL = "https://minhhuy0211.github.io/"
+languageCode = "vi-vn"
+title = "Nguyễn Trịnh Minh Huy"
+theme = "PaperMod"
+
+[params]
+    defaultTheme = "light"
+    ShowReadingTime = true
+    ShowShareButtons = false
+    ShowPostNavLinks = true
+    ShowBreadCrumbs = true
+    ShowCodeCopyButtons = true
+    ShowToc = true
+    author = "Nguyễn Trịnh Minh Huy"
+    description = "Portfolio & Blog chia sẻ kiến thức Lập trình mạng, Java Backend, JavaScript."
+
+    # --- PROFILE ---
+    [params.profileMode]
+        enabled = true
+        title = "Hi, I'm Nguyễn Trịnh Minh Huy 👋"
+        subtitle = "Java Backend Developer | Network Engineering Student"
+        imageUrl = "anhdaidien.jpg"
+        imageWidth = 150
+        imageHeight = 150
+
+# --- MENU ---
+[menu]
+    [[menu.main]]
+        identifier = "home"
+        name = "Trang chủ"
+        url = "/"
+        weight = 10
+
+    [[menu.main]]
+        identifier = "about"
+        name = "Giới thiệu"
+        url = "/about/"
+        weight = 20
+
+    [[menu.main]]
+        identifier = "blog"
+        name = "Blog"
+        url = "/posts/"
+        weight = 30
+
+    [[menu.main]]
+        identifier = "contact"
+        name = "Liên hệ"
+        url = "/contact/"
+        weight = 40
+
+# --- MARKDOWN ---
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+
+# --- FIX CSS GITHUB PAGES ---
+canonifyURLs = true
+relativeURLs = false
+
+# --- BUILD ---
+[build]
+    writeStats = false
+    noJSConfigInAssets = true
+
+[minify]
+    disableCSS = false
+    disableHTML = false
+    disableJS = false
+    disableJSON = false
+    disableSVG = false
+    disableXML = false
+    minifyOutput = false

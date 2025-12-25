@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="blog-wrapper">
+    <div class="blog-container">
+        <h1 class="blog-title">LATEST ARTICLES.</h1>
+        <div class="post-grid">
+            {{ range .Pages }}
+            <a href="{{ .Permalink }}" class="post-card">
+                <div class="post-date">{{ .Date.Format "02 Jan 2006" }}</div>
+                <h2 class="post-heading">{{ .Title }}</h2>
+                <p class="post-summary">{{ .Summary | truncate 120 }}</p>
+                <span class="read-btn">READ MORE →</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

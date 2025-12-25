@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "vi" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+<link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+
+    {{- block "head" . }}{{- end }}
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="luxury-header">
+        <nav class="luxury-nav">
+
+            <!-- LOGO / NAME -->
+            <div class="luxury-logo">
+                <a href="{{ "" | absURL }}">
+                    NGUYỄN TRỊNH MINH HUY
+                </a>
+            </div>
+
+            <!-- MENU -->
+            <ul class="luxury-menu">
+                <li>
+                    <a href="{{ "" | absURL }}"
+                       class="{{ if .IsHome }}active{{ end }}">
+                        TRANG CHỦ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ "about" | absURL }}"
+                       class="{{ if in .RelPermalink "about" }}active{{ end }}">
+                        GIỚI THIỆU
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ "posts" | absURL }}"
+                       class="{{ if (or (eq .Section "posts") (in .RelPermalink "posts")) }}active{{ end }}">
+                        BLOG
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ "contact" | absURL }}"
+                       class="{{ if in .RelPermalink "contact" }}active{{ end }}">
+                        LIÊN HỆ
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        {{- block "main" . }}{{- end }}
+    </main>
+
+</body>
+</html>
