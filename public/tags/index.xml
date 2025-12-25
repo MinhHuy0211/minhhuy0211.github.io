@@ -2,10 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Nguyễn Trịnh Minh Huy</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://minhhuy0211.github.io/tags/</link>
     <description>Recent content in Tags on Nguyễn Trịnh Minh Huy</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>vi-vn</language>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://minhhuy0211.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java</title>
+      <link>https://minhhuy0211.github.io/tags/java/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Server</title>
+      <link>https://minhhuy0211.github.io/tags/server/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/server/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thread</title>
+      <link>https://minhhuy0211.github.io/tags/thread/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/thread/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Best Practice</title>
+      <link>https://minhhuy0211.github.io/tags/best-practice/</link>
+      <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/best-practice/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JavaScript</title>
+      <link>https://minhhuy0211.github.io/tags/javascript/</link>
+      <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JSON</title>
+      <link>https://minhhuy0211.github.io/tags/json/</link>
+      <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/json/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Theory</title>
+      <link>https://minhhuy0211.github.io/tags/theory/</link>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/theory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>https://minhhuy0211.github.io/tags/network/</link>
+      <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>File Transfer</title>
+      <link>https://minhhuy0211.github.io/tags/file-transfer/</link>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/file-transfer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Socket</title>
+      <link>https://minhhuy0211.github.io/tags/socket/</link>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/socket/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Async</title>
+      <link>https://minhhuy0211.github.io/tags/async/</link>
+      <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/tags/async/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

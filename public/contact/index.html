@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Nguyễn Trịnh Minh Huy</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    
+<link rel="stylesheet" href="https://minhhuy0211.github.io/css/style.css">
+</head>
+<body>
+
+    
+    <header class="luxury-header">
+        <nav class="luxury-nav">
+
+            
+            <div class="luxury-logo">
+                <a href="https://minhhuy0211.github.io/">
+                    NGUYỄN TRỊNH MINH HUY
+                </a>
+            </div>
+
+            
+            <ul class="luxury-menu">
+                <li>
+                    <a href="https://minhhuy0211.github.io/"
+                       class="">
+                        TRANG CHỦ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/about"
+                       class="">
+                        GIỚI THIỆU
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/posts"
+                       class="">
+                        BLOG
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/contact"
+                       class="active">
+                        LIÊN HỆ
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    
+    <main>
+<div class="contact-wrapper">
+    <div class="contact-split-layout">
+
+        
+        <div class="contact-text-side">
+            <div class="contact-content">
+                <p class="contact-label reveal">GET IN TOUCH</p>
+
+                <h1 class="contact-title reveal">
+                    <span class="title-line">CONTACT</span>
+                    <span class="title-line outline">ME.</span>
+                </h1>
+
+                <div class="contact-info reveal">
+                    <p class="info-item">📧 mhuydeptrai@gmail.com</p>
+                    <p class="info-item">📞 +84 326 865 170</p>
+                </div>
+
+                <div class="contact-form-wrapper reveal">
+                    <form action="https://formspree.io/f/xvzpylgw" method="POST" class="contact-form">
+                        <input type="text" name="name" placeholder="TÊN CỦA BẠN *" required>
+                        <input type="email" name="email" placeholder="EMAIL CỦA BẠN *" required>
+                        <textarea name="message" rows="5" placeholder="NỘI DUNG TIN NHẮN *" required></textarea>
+                        <button type="submit" class="submit-btn">GỬI TIN NHẮN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="contact-image-side">
+            <div class="image-frame image-reveal">
+                <img src="https://minhhuy0211.github.io/anhdaidien.jpg" alt="Nguyễn Trịnh Minh Huy">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+ 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+ 
+footer, .footer, .nav, .header, .logo-switches, #top-link {
+    display: none !important;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+ 
+.contact-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+ 
+.contact-split-layout {
+    display: flex;
+    height: 100%;
+}
+
+.contact-text-side {
+    flex: 0 0 55%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8vw;
+}
+
+.contact-content {
+    max-width: 580px;
+    width: 100%;
+}
+
+.contact-image-side {
+    flex: 0 0 45%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-frame {
+    width: 78%;
+    max-width: 500px;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    box-shadow: 30px 30px 90px rgba(0,0,0,0.12);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.image-frame:hover {
+    transform: translateY(-12px);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 1.4s ease;
+}
+
+.image-frame:hover img {
+    transform: scale(1.06);
+}
+
+ 
+.contact-label {
+    font-size: 12px;
+    letter-spacing: 7px;
+    font-weight: 600;
+    color: #aaaaaa;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 110px;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -3px;
+    margin: 0 0 60px 0;
+}
+
+.contact-title .title-line {
+    display: block;
+    overflow: hidden;
+}
+
+.contact-title .outline {
+    color: transparent;
+    -webkit-text-stroke: 2.5px #1a1a1a;
+}
+
+.contact-info {
+    margin-bottom: 60px;
+}
+
+.info-item {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin: 16px 0;
+    opacity: 0.9;
+}
+
+ 
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    background: transparent;
+    padding: 12px 0;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.4s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom-color: #1a1a1a;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.submit-btn {
+    align-self: flex-start;
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    padding: 16px 44px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+ 
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    animation: revealUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal:nth-of-type(1) { animation-delay: 0.3s; }
+.reveal:nth-of-type(2) { animation-delay: 0.6s; }
+.reveal:nth-of-type(3) { animation-delay: 0.9s; }
+.reveal:nth-of-type(4) { animation-delay: 1.2s; }
+
+@keyframes revealUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-title .title-line span {
+    display: block;
+    transform: translateY(110%);
+    animation: titleSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.contact-title .title-line:nth-child(1) span { animation-delay: 0.5s; }
+.contact-title .title-line:nth-child(2) span { animation-delay: 0.8s; }
+
+@keyframes titleSlide {
+    to { transform: translateY(0); }
+}
+
+.image-reveal {
+    opacity: 0;
+    transform: scale(0.94);
+    animation: imageReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 1s;
+}
+
+@keyframes imageReveal {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+ 
+@media (max-width: 1024px) {
+    .contact-title {
+        font-size: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body { overflow: auto; }
+    
+    .contact-split-layout {
+        flex-direction: column-reverse;
+    }
+    
+    .contact-text-side {
+        flex: 1;
+        padding: 100px 40px 80px;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .contact-content {
+        max-width: 100%;
+    }
+    
+    .contact-image-side {
+        flex: 0 0 50vh;
+        width: 100%;
+    }
+    
+    .image-frame {
+        width: 85%;
+        max-width: 420px;
+    }
+    
+    .contact-title {
+        font-size: 68px;
+        letter-spacing: -2px;
+    }
+    
+    .contact-info {
+        margin-bottom: 50px;
+    }
+    
+    .info-item {
+        font-size: 17px;
+    }
+    
+    .submit-btn {
+        align-self: center;
+    }
+}
+</style>
+
+    </main>
+
+</body>
+</html>

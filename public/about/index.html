@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về tôi - Nguyễn Trịnh Minh Huy</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    
+<link rel="stylesheet" href="https://minhhuy0211.github.io/css/style.css">
+</head>
+<body>
+
+    
+    <header class="luxury-header">
+        <nav class="luxury-nav">
+
+            
+            <div class="luxury-logo">
+                <a href="https://minhhuy0211.github.io/">
+                    NGUYỄN TRỊNH MINH HUY
+                </a>
+            </div>
+
+            
+            <ul class="luxury-menu">
+                <li>
+                    <a href="https://minhhuy0211.github.io/"
+                       class="">
+                        TRANG CHỦ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/about"
+                       class="active">
+                        GIỚI THIỆU
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/posts"
+                       class="">
+                        BLOG
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://minhhuy0211.github.io/contact"
+                       class="">
+                        LIÊN HỆ
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    
+    <main>
+<div class="luxury-page-wrapper">
+    <div class="luxury-split-layout">
+
+        
+        <div class="luxury-text-side">
+            <div class="luxury-content">
+                <p class="luxury-label reveal-anim">LỜI TỰ BẠCH</p>
+
+                <h1 class="luxury-main-title reveal-anim">
+                    <span class="title-line">GIỚI</span>
+                    <span class="title-line">THIỆU.</span>
+                </h1>
+                
+                <div class="luxury-bio reveal-anim">
+                    <h3 class="luxury-job">NGUYỄN TRỊNH MINH HUY — SINH VIÊN CNTT HUTECH</h3>
+
+                    <p>
+                        Xin chào, mình là sinh viên chuyên ngành 
+                        <strong>Công Nghệ Thông Tin</strong> tại <strong>HUTECH</strong>.  
+                        Mình bắt đầu hành trình lập trình từ sự tò mò về cách các hệ thống phức tạp vận hành phía sau giao diện.
+                    </p>
+
+                    <p>
+                        Mình đam mê <strong>Java</strong>, <strong>JavaScript</strong> và 
+                        <strong>Lập trình mạng</strong>.  
+                        Điều khiến mình gắn bó là việc xây dựng logic chặt chẽ, tối ưu hệ thống và tạo ra những giải pháp bền vững lâu dài.
+                    </p>
+                </div>
+
+                <div class="luxury-quote reveal-anim">
+                    “Xây dựng chậm rãi, nhưng chắc chắn.”
+                </div>
+
+                <div class="luxury-actions reveal-anim">
+                    <a href="https://minhhuy0211.github.io/posts" class="btn-luxury">XEM BLOG</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="luxury-image-side">
+            <div class="luxury-img-frame image-anim">
+                <img 
+                    src="https://minhhuy0211.github.io/anh3.jpg" 
+                    alt="Nguyễn Trịnh Minh Huy"
+                >
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+ 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+ 
+footer, .footer, .nav, .logo-switches, #top-link {
+    display: none !important;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+ 
+.luxury-page-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+ 
+.luxury-split-layout {
+    display: flex;
+    height: 100%;
+}
+
+ 
+.luxury-text-side {
+    flex: 0 0 55%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8vw;
+}
+
+.luxury-content {
+    max-width: 560px;
+}
+
+ 
+.luxury-image-side {
+    flex: 0 0 45%;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.luxury-img-frame {
+    width: 80%;
+    max-width: 480px;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    box-shadow: 30px 30px 80px rgba(0,0,0,0.15);
+    transition: transform 0.8s ease;
+}
+
+.luxury-img-frame:hover {
+    transform: translateY(-10px);
+}
+
+.luxury-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.2s ease;
+}
+
+.luxury-img-frame:hover img {
+    transform: scale(1.05);
+}
+
+ 
+.luxury-label {
+    font-size: 12px;
+    letter-spacing: 6px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.luxury-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 110px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin: 0 0 60px 0;
+}
+
+.luxury-main-title .title-line {
+    display: block;
+    overflow: hidden;
+}
+
+.luxury-job {
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.luxury-bio p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.luxury-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: #444;
+    margin: 80px 0 60px;
+    position: relative;
+}
+
+.luxury-quote::before {
+    content: '“';
+    font-size: 80px;
+    position: absolute;
+    left: -50px;
+    top: -20px;
+    color: #eee;
+}
+
+ 
+.luxury-actions {
+    margin-top: 20px;
+}
+
+.btn-luxury {
+    display: inline-block;
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+
+.btn-luxury:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+ 
+.reveal-anim {
+    opacity: 0;
+    transform: translateY(60px);
+    animation: revealUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-anim:nth-child(1) { animation-delay: 0.2s; }
+.reveal-anim:nth-child(2) { animation-delay: 0.5s; }
+.reveal-anim:nth-child(3) { animation-delay: 0.8s; }
+.reveal-anim:nth-child(4) { animation-delay: 1.1s; }
+.reveal-anim:nth-child(5) { animation-delay: 1.4s; }
+.reveal-anim:nth-child(6) { animation-delay: 1.7s; }
+
+@keyframes revealUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.luxury-main-title .title-line span {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: titleSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.luxury-main-title .title-line:nth-child(1) span { animation-delay: 0.4s; }
+.luxury-main-title .title-line:nth-child(2) span { animation-delay: 0.7s; }
+
+@keyframes titleSlide {
+    to { transform: translateY(0); }
+}
+
+.image-anim {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: imageReveal 1.8s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes imageReveal {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+ 
+@media (max-width: 1024px) {
+    .luxury-main-title {
+        font-size: 90px;
+    }
+    .luxury-text-side {
+        padding-right: 6vw;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body { overflow: auto; }
+    
+    .luxury-split-layout {
+        flex-direction: column-reverse;
+    }
+    
+    .luxury-text-side {
+        flex: 1;
+        padding: 100px 30px 80px;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .luxury-content {
+        max-width: 100%;
+    }
+    
+    .luxury-image-side {
+        flex: 0 0 50vh;
+        width: 100%;
+    }
+    
+    .luxury-img-frame {
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    .luxury-main-title {
+        font-size: 70px;
+    }
+    
+    .luxury-quote {
+        font-size: 24px;
+        margin: 60px 0;
+    }
+    
+    .luxury-quote::before {
+        left: 0;
+        top: -40px;
+    }
+}
+</style>
+
+    </main>
+
+</body>
+</html>
