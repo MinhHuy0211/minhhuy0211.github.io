@@ -61,6 +61,14 @@
                     LIÊN HỆ
                 </a>
             </li>
+
+             
+            <li>
+                <a href="https://minhhuy0211.github.io/cv/"
+                   class="">
+                    My CV
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -72,22 +80,37 @@
 <style>
      
     :root {
-        --primary-color: #2c3e50;
-        --accent-color: #3498db;
-        --bg-color: #f8f9fa;
+         
+        --bg-body: #fdfbf7; 
+        
+         
         --card-bg: #ffffff;
-        --text-color: #555555;
-        --text-light: #999999;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
+        
+         
+        --festive-red: #c0392b; 
+        --festive-red-dark: #a93226;
+        
+         
+        --luxury-gold: #d4af37;
+        --luxury-gold-gradient: linear-gradient(135deg, #d4af37, #f1c40f, #d4af37);
+        
+         
+        --text-dark: #2c3e50;
+        --text-gray: #636e72;
+        
+         
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 20px 40px rgba(192, 57, 43, 0.15);  
     }
 
      
     .blog-wrapper {
-        background-color: var(--bg-color);
-        padding: 4rem 1rem;
+        background-color: var(--bg-body);
+        padding: 5rem 1rem;
         min-height: 100vh;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-image: radial-gradient(#e1e1e1 1px, transparent 1px);
+        background-size: 30px 30px;  
     }
 
     .blog-container {
@@ -98,151 +121,213 @@
 
     .blog-title {
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: 800;
-        color: var(--primary-color);
-        margin-bottom: 3rem;
-        letter-spacing: -1px;
+        color: var(--festive-red);
+        margin-bottom: 4rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
         position: relative;
-        display: inline-block;
-        width: 100%;
+    }
+
+     
+    .blog-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--luxury-gold-gradient);
+        margin: 15px auto 0;
+        border-radius: 2px;
     }
 
      
     .post-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2.5rem;
     }
 
      
     .post-card {
         background-color: var(--card-bg);
-        border-radius: 12px;
+        border-radius: 20px;
         overflow: hidden;
         text-decoration: none;
         color: inherit;
-        box-shadow: var(--shadow);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
         display: flex;
         flex-direction: column;
-        height: 100%;  
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);  
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(0,0,0,0.03);
     }
 
+     
+    .post-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--luxury-gold-gradient);
+        z-index: 2;
+        transition: height 0.3s ease;
+    }
+
+     
     .post-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
         box-shadow: var(--shadow-hover);
+        border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .post-card:hover::before {
+        height: 10px;  
     }
 
      
     .post-thumb {
         width: 100%;
-        height: 220px;  
+        height: 240px;
         overflow: hidden;
         position: relative;
+         
+        clip-path: ellipse(150% 100% at 50% 0%); 
+        border-bottom: 4px solid var(--festive-red);
     }
 
     .post-thumb img {
         width: 100%;
         height: 100%;
-        object-fit: cover;  
-        transition: transform 0.5s ease;
+        object-fit: cover;
+        transition: transform 0.6s ease;
     }
 
     .post-card:hover .post-thumb img {
-        transform: scale(1.05);  
+        transform: scale(1.1);
+    }
+
+     
+     
+    .date-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--card-bg);
+        color: var(--festive-red);
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        z-index: 3;
+        border: 2px solid var(--luxury-gold);
+        text-transform: uppercase;
     }
 
      
     .post-content {
-        padding: 1.5rem;
+        padding: 2rem;
         display: flex;
         flex-direction: column;
-        flex-grow: 1;  
+        flex-grow: 1;
+        position: relative;
     }
 
-    .post-date {
-        font-size: 0.85rem;
-        color: var(--text-light);
-        margin-bottom: 0.75rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+     
+    .post-content::after {
+        content: "✦";  
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 5rem;
+        color: var(--festive-red);
+        opacity: 0.03;
+        pointer-events: none;
+        font-family: serif;
     }
 
     .post-heading {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--primary-color);
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--text-dark);
         margin: 0 0 1rem 0;
         line-height: 1.4;
+        transition: color 0.3s;
+    }
+
+    .post-card:hover .post-heading {
+        color: var(--festive-red);
     }
 
     .post-summary {
         font-size: 0.95rem;
-        color: var(--text-color);
+        color: var(--text-gray);
         line-height: 1.6;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         display: -webkit-box;
-        -webkit-line-clamp: 3;  
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
      
     .read-btn {
-        margin-top: auto;  
-        display: inline-block;
-        font-size: 0.9rem;
+        margin-top: auto;
+        align-self: flex-start;
+        background: var(--festive-red);
+        color: white;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-size: 0.85rem;
         font-weight: 600;
-        color: var(--accent-color);
-        text-transform: uppercase;
         letter-spacing: 1px;
-        transition: color 0.2s;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
     }
 
     .post-card:hover .read-btn {
-        color: #2980b9;
-        text-decoration: underline;
+        background: white;
+        color: var(--festive-red);
+        border-color: var(--festive-red);
+        transform: translateX(5px);
     }
 
      
     @media (max-width: 768px) {
-        .blog-wrapper {
-            padding: 2rem 1rem;
-        }
-        
-        .blog-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .post-grid {
-            grid-template-columns: 1fr;  
-            gap: 1.5rem;
-        }
+        .blog-wrapper { padding: 3rem 1rem; }
+        .blog-title { font-size: 2.2rem; }
+        .post-grid { grid-template-columns: 1fr; }
+        .post-thumb { height: 200px; }
     }
 </style>
 
 <div class="blog-wrapper">
     <div class="blog-container">
-        <h1 class="blog-title">Latest Articles</h1>
+        <h1 class="blog-title">Góc Chia Sẻ</h1>
         
         <div class="post-grid">
             
             <a href="https://minhhuy0211.github.io/posts/bai-viet-9/" class="post-card">
                 
-                
                 <div class="post-thumb">
-                    <img src="/sachhutech.jpg" alt="Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc" loading="lazy">
+                    <div class="date-badge">
+                        23 Dec
+                    </div>
+
+                    
+                        <img src="/sachhutech.jpg" alt="Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc" loading="lazy">
+                    
                 </div>
                 
-                
                 <div class="post-content">
-                    <div class="post-date">23 Dec 2025</div>
                     <h2 class="post-heading">Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc</h2>
-                    <p class="post-summary">Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để xử lý hàng …</p>
-                    <span class="read-btn">Read More &rarr;</span>
+                    <p class="post-summary">Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để …</p>
+                    <span class="read-btn">Xem chi tiết</span>
                 </div>
             </a>
             

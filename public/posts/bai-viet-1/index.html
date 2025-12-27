@@ -61,6 +61,14 @@
                     LIÊN HỆ
                 </a>
             </li>
+
+             
+            <li>
+                <a href="https://minhhuy0211.github.io/cv/"
+                   class="">
+                    My CV
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -68,14 +76,30 @@
 
     
     <main>
-<div class="article-wrapper">
-    <article class="main-article">
-        <header class="article-header">
-            <p class="article-meta">15 JANUARY 2025 — [Java Network InetAddress IP Address]</p>
-            <h1 class="article-title">Bài 1: Làm sao biết máy mình đang dùng IP gì trong Java?</h1>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<div class="noir-article-wrapper">
+    <div class="noise-overlay"></div>
+
+    <article class="noir-article-container">
+        
+        <header class="article-header reveal-text">
+            <div class="article-meta">
+                <span class="date">/// 15 JAN 2025</span>
+                
+                <span class="separator">—</span>
+                <span class="tags">Java, Network, InetAddress, IP Address</span>
+                
+            </div>
+            
+            <h1 class="article-title serif-italic">Bài 1: Làm sao biết máy mình đang dùng IP gì trong Java?</h1>
+            <div class="title-separator"></div>
         </header>
         
-        <div class="article-content">
+        <div class="article-content reveal-up delay-1">
             <p>Trong lập trình mạng với Java, việc xác định địa chỉ IP của chính máy mình (localhost) là một trong những bước cơ bản nhất trước khi thiết lập kết nối socket, xây dựng server hay client. Java cung cấp class <strong><code>InetAddress</code></strong> trong package <code>java.net</code> để hỗ trợ việc này một cách đơn giản, mạnh mẽ và đáng tin cậy.</p>
 <p>Bài viết này sẽ hướng dẫn bạn từ cách lấy IP cơ bản nhất đến xử lý các tình huống thực tế như máy có nhiều card mạng (Wi-Fi + Ethernet + VPN).</p>
 <h3 id="1-giới-thiệu-về-class-inetaddress">1. Giới thiệu về class <code>InetAddress</code></h3>
@@ -112,74 +136,274 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>  
         </div>
-        <div class="article-content">
-            <p>Trong lập trình mạng với Java, việc xác định địa chỉ IP của chính máy mình (localhost) là một trong những bước cơ bản nhất trước khi thiết lập kết nối socket, xây dựng server hay client. Java cung cấp class <strong><code>InetAddress</code></strong> trong package <code>java.net</code> để hỗ trợ việc này một cách đơn giản, mạnh mẽ và đáng tin cậy.</p>
-<p>Bài viết này sẽ hướng dẫn bạn từ cách lấy IP cơ bản nhất đến xử lý các tình huống thực tế như máy có nhiều card mạng (Wi-Fi + Ethernet + VPN).</p>
-<h3 id="1-giới-thiệu-về-class-inetaddress">1. Giới thiệu về class <code>InetAddress</code></h3>
-<p><code>InetAddress</code> là lớp đại diện cho một địa chỉ IP (hỗ trợ cả IPv4 và IPv6). Đặc biệt:</p>
-<ul>
-<li>Không có constructor public → chỉ tạo được instance qua các phương thức static.</li>
-<li>Các phương thức chính thường dùng:
-<ul>
-<li><code>InetAddress.getLocalHost()</code> → Lấy địa chỉ của máy hiện tại.</li>
-<li><code>InetAddress.getByName(String host)</code> → Lấy địa chỉ từ hostname hoặc IP string.</li>
-<li><code>InetAddress.getAllByName(String host)</code> → Lấy tất cả IP liên kết với một hostname.</li>
-<li><code>InetAddress.getLoopbackAddress()</code> → Trả về địa chỉ loopback (127.0.0.1 hoặc ::1).</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-cách-đơn-giản-nhất-lấy-ip-và-hostname-của-máy-local">2. Cách đơn giản nhất: Lấy IP và hostname của máy local</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.InetAddress;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.UnknownHostException;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyLocalIP</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>            InetAddress localHost <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getLocalHost</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hostname:             &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostName</span>());
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Địa chỉ IP:           &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostAddress</span>());
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Canonical Hostname:   &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getCanonicalHostName</span>());
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (UnknownHostException e) {
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Không thể xác định địa chỉ của máy local.&#34;</span>);
-</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-        </div>
 
-        <div class="post-navigation">
+        <div class="post-navigation reveal-up delay-2">
             
-            <div class="nav-placeholder"></div>
+            <div class="nav-spacer"></div>
             
 
             
-            <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-2/">
-                <span class="nav-label">TIẾP THEO →</span>
-                
+            <a class="nav-link next" href="https://minhhuy0211.github.io/posts/bai-viet-2/">
+                <span class="nav-label">NEXT POST →</span>
+                <span class="nav-title">Bài 2: Port là gì? Tại sao Server hay dùng cổng 8080?</span>
             </a>
             
         </div>
-        </article>
-</div>
+
     </article>
 </div>
 
 <style>
-     
-     
-    .article-wrapper { margin-top: 120px; display: flex; justify-content: center; padding-bottom: 100px; }
-    .main-article { max-width: 800px; width: 90%; padding: 0 20px; }
-    .article-header { text-align: center; margin-bottom: 60px; }
-    .article-meta { color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-    .article-title { font-size: 40px; font-weight: 900; line-height: 1.3; }
-    .article-content { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.8; text-align: justify; }
-    .article-content h2, .article-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; margin-top: 40px; }
-    .article-content pre { background: #f4f4f4; padding: 20px; border-radius: 5px; overflow-x: auto; font-size: 14px; border: 1px solid #ddd; }
-    .article-content code { font-family: 'Courier New', monospace; color: #d63384; }
-    .article-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; }
+ 
+:root {
+    --bg-dark: #0e0e0e;
+    --text-light: #e0e0e0;      
+    --text-dim: #888;
+    --border-color: rgba(255,255,255,0.1);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --code-bg: #1a1a1a;
+    --accent: #fff;
+}
+
+ 
+html, body {
+    margin: 0; padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+ 
+footer, .footer, .nav, .header, .logo-switches, #top-link { display: none !important; }
+
+ 
+.noir-article-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+ 
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.noir-article-container {
+    max-width: 740px;  
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+ 
+.article-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.article-meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.article-title {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.title-separator {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--border-color), transparent);
+    margin: 0 auto;
+}
+
+ 
+.article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;  
+    text-align: justify;
+}
+
+ 
+.article-content h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    color: #fff;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.article-content h3 {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+ 
+.article-content p {
+    margin-bottom: 25px;
+}
+
+ 
+.article-content a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+}
+.article-content a:hover {
+    border-bottom-color: #fff;
+}
+
+ 
+.article-content blockquote {
+    border-left: 2px solid #fff;
+    margin: 40px 0;
+    padding-left: 25px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: #fff;
+}
+
+ 
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 40px auto;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);  
+    filter: brightness(0.9);  
+    transition: 0.3s;
+}
+.article-content img:hover {
+    filter: brightness(1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.article-content pre {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+.article-content code {
+    font-family: 'Space Mono', monospace;  
+    color: #e0e0e0;
+}
+ 
+.article-content p code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+ 
+.article-content ul, .article-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+.article-content li {
+    margin-bottom: 10px;
+}
+
+ 
+.post-navigation {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.nav-link {
+    flex: 1;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dim);
+    transition: all 0.4s ease;
+    border-bottom: none !important;  
+}
+
+.nav-link.next { text-align: right; }
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-style: italic;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.nav-link:hover .nav-title {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.nav-spacer { flex: 1; }
+
+ 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-text { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.reveal-up { opacity: 0; animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+ 
+@media (max-width: 768px) {
+    .noir-article-wrapper { padding: 80px 20px; }
+    .article-content { font-size: 16px; }
+    .post-navigation { flex-direction: column; gap: 30px; }
+    .nav-link.next { text-align: left; }
+}
 </style>
 
     </main>

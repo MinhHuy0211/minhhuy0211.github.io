@@ -61,6 +61,14 @@
                     LIÊN HỆ
                 </a>
             </li>
+
+             
+            <li>
+                <a href="https://minhhuy0211.github.io/cv/"
+                   class="">
+                    My CV
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -68,14 +76,30 @@
 
     
     <main>
-<div class="article-wrapper">
-    <article class="main-article">
-        <header class="article-header">
-            <p class="article-meta">20 JANUARY 2025 — [Java Network IO Blocking Non-Blocking NIO Concurrency]</p>
-            <h1 class="article-title">Bài 6: Phân biệt Blocking IO và Non-Blocking IO</h1>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<div class="noir-article-wrapper">
+    <div class="noise-overlay"></div>
+
+    <article class="noir-article-container">
+        
+        <header class="article-header reveal-text">
+            <div class="article-meta">
+                <span class="date">/// 20 JAN 2025</span>
+                
+                <span class="separator">—</span>
+                <span class="tags">Java, Network, IO, Blocking, Non-Blocking, NIO, Concurrency</span>
+                
+            </div>
+            
+            <h1 class="article-title serif-italic">Bài 6: Phân biệt Blocking IO và Non-Blocking IO</h1>
+            <div class="title-separator"></div>
         </header>
         
-        <div class="article-content">
+        <div class="article-content reveal-up delay-1">
             <p>Trong lập trình mạng Java, cách xử lý I/O (Input/Output) quyết định server của bạn có thể phục vụ <strong>vài chục</strong> hay <strong>hàng chục nghìn</strong> kết nối đồng thời. Hai mô hình chính là <strong>Blocking IO</strong> (truyền thống) và <strong>Non-Blocking IO</strong> (NIO – New IO).</p>
 <p>Hiểu rõ sự khác biệt này là nền tảng để xây dựng các hệ thống hiệu năng cao như chat server, game online, API realtime hay microservices chịu tải lớn.</p>
 <h3 id="1-blocking-io--mô-hình-chờ-đợi-cổ-điển">1. Blocking IO – Mô hình &ldquo;chờ đợi&rdquo; cổ điển</h3>
@@ -122,87 +146,277 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>  
         </div>
-        <div class="article-content">
-            <p>Trong lập trình mạng Java, cách xử lý I/O (Input/Output) quyết định server của bạn có thể phục vụ <strong>vài chục</strong> hay <strong>hàng chục nghìn</strong> kết nối đồng thời. Hai mô hình chính là <strong>Blocking IO</strong> (truyền thống) và <strong>Non-Blocking IO</strong> (NIO – New IO).</p>
-<p>Hiểu rõ sự khác biệt này là nền tảng để xây dựng các hệ thống hiệu năng cao như chat server, game online, API realtime hay microservices chịu tải lớn.</p>
-<h3 id="1-blocking-io--mô-hình-chờ-đợi-cổ-điển">1. Blocking IO – Mô hình &ldquo;chờ đợi&rdquo; cổ điển</h3>
-<p>Đây là cách hoạt động mặc định của các class trong <code>java.io</code> và <code>java.net</code> (Socket, ServerSocket, InputStream, OutputStream&hellip;).</p>
-<h4 id="đặc-điểm-chính">Đặc điểm chính</h4>
-<ul>
-<li>
-<p>Khi gọi các phương thức I/O như:</p>
-<ul>
-<li><code>serverSocket.accept()</code></li>
-<li><code>inputStream.read()</code></li>
-<li><code>outputStream.write()</code></li>
-</ul>
-<p>→ <strong>Thread hiện tại bị block (dừng hoàn toàn)</strong> cho đến khi thao tác hoàn tất hoặc có ngoại lệ.</p>
-</li>
-<li>
-<p>Thread không làm được việc gì khác trong lúc chờ.</p>
-</li>
-</ul>
-<h4 id="ví-dụ-server-blocking-đơn-giản-chỉ-xử-lý-1-client-tại-1-thời-điểm">Ví dụ Server Blocking đơn giản (chỉ xử lý 1 client tại 1 thời điểm)</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.*;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BlockingServer</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> IOException {
-</span></span><span style="display:flex;"><span>        ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(8080);
-</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server Blocking đang chạy...&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
-</span></span><span style="display:flex;"><span>            Socket client <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();  <span style="color:#75715e">// ← BLOCK: Đứng chờ client kết nối</span>
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client kết nối: &#34;</span> <span style="color:#f92672">+</span> client.<span style="color:#a6e22e">getInetAddress</span>());
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            InputStream in <span style="color:#f92672">=</span> client.<span style="color:#a6e22e">getInputStream</span>();
-</span></span><span style="display:flex;"><span>            BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(in));
-</span></span><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>            String line;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> ((line <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>()) <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {  <span style="color:#75715e">// ← BLOCK: Chờ từng dòng từ client</span>
-</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận: &#34;</span> <span style="color:#f92672">+</span> line);
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;bye&#34;</span>.<span style="color:#a6e22e">equalsIgnoreCase</span>(line)) <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            client.<span style="color:#a6e22e">close</span>();
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-        </div>
 
-        <div class="post-navigation">
+        <div class="post-navigation reveal-up delay-2">
             
-            <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-5/">
-                <span class="nav-label">← QUAY LẠI</span>
-                
+            <a class="nav-link prev" href="https://minhhuy0211.github.io/posts/bai-viet-5/">
+                <span class="nav-label">← PREVIOUS POST</span>
+                <span class="nav-title">Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</span>
             </a>
             
 
             
-            <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-7/">
-                <span class="nav-label">TIẾP THEO →</span>
-                
+            <a class="nav-link next" href="https://minhhuy0211.github.io/posts/bai-viet-7/">
+                <span class="nav-label">NEXT POST →</span>
+                <span class="nav-title">Bài 7: Xử lý dữ liệu JSON trong JavaScript – JSON.parse() và JSON.stringify()</span>
             </a>
             
         </div>
-        </article>
-</div>
+
     </article>
 </div>
 
 <style>
-     
-     
-    .article-wrapper { margin-top: 120px; display: flex; justify-content: center; padding-bottom: 100px; }
-    .main-article { max-width: 800px; width: 90%; padding: 0 20px; }
-    .article-header { text-align: center; margin-bottom: 60px; }
-    .article-meta { color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-    .article-title { font-size: 40px; font-weight: 900; line-height: 1.3; }
-    .article-content { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.8; text-align: justify; }
-    .article-content h2, .article-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; margin-top: 40px; }
-    .article-content pre { background: #f4f4f4; padding: 20px; border-radius: 5px; overflow-x: auto; font-size: 14px; border: 1px solid #ddd; }
-    .article-content code { font-family: 'Courier New', monospace; color: #d63384; }
-    .article-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; }
+ 
+:root {
+    --bg-dark: #0e0e0e;
+    --text-light: #e0e0e0;      
+    --text-dim: #888;
+    --border-color: rgba(255,255,255,0.1);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --code-bg: #1a1a1a;
+    --accent: #fff;
+}
+
+ 
+html, body {
+    margin: 0; padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+ 
+footer, .footer, .nav, .header, .logo-switches, #top-link { display: none !important; }
+
+ 
+.noir-article-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+ 
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.noir-article-container {
+    max-width: 740px;  
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+ 
+.article-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.article-meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.article-title {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.title-separator {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--border-color), transparent);
+    margin: 0 auto;
+}
+
+ 
+.article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;  
+    text-align: justify;
+}
+
+ 
+.article-content h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    color: #fff;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.article-content h3 {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+ 
+.article-content p {
+    margin-bottom: 25px;
+}
+
+ 
+.article-content a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+}
+.article-content a:hover {
+    border-bottom-color: #fff;
+}
+
+ 
+.article-content blockquote {
+    border-left: 2px solid #fff;
+    margin: 40px 0;
+    padding-left: 25px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: #fff;
+}
+
+ 
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 40px auto;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);  
+    filter: brightness(0.9);  
+    transition: 0.3s;
+}
+.article-content img:hover {
+    filter: brightness(1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.article-content pre {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+.article-content code {
+    font-family: 'Space Mono', monospace;  
+    color: #e0e0e0;
+}
+ 
+.article-content p code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+ 
+.article-content ul, .article-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+.article-content li {
+    margin-bottom: 10px;
+}
+
+ 
+.post-navigation {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.nav-link {
+    flex: 1;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dim);
+    transition: all 0.4s ease;
+    border-bottom: none !important;  
+}
+
+.nav-link.next { text-align: right; }
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-style: italic;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.nav-link:hover .nav-title {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.nav-spacer { flex: 1; }
+
+ 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-text { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.reveal-up { opacity: 0; animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+ 
+@media (max-width: 768px) {
+    .noir-article-wrapper { padding: 80px 20px; }
+    .article-content { font-size: 16px; }
+    .post-navigation { flex-direction: column; gap: 30px; }
+    .nav-link.next { text-align: left; }
+}
 </style>
 
     </main>

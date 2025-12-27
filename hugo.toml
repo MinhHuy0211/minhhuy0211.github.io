@@ -47,11 +47,17 @@ customCSS = ["css/style.css"]
         name = "Chứng chỉ"
         url = "/certificates/"
         weight = 35
+        [[menu.main]]
+    identifier = "cv"
+    name = "CV"
+    url = "/cv/"
+    weight = 38
     [[menu.main]]
         identifier = "contact"
         name = "Liên hệ"
         url = "/contact/"
         weight = 40
+        
 
 # --- MARKDOWN ---
 [markup]

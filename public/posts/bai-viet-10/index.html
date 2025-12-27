@@ -61,6 +61,14 @@
                     LIÊN HỆ
                 </a>
             </li>
+
+             
+            <li>
+                <a href="https://minhhuy0211.github.io/cv/"
+                   class="">
+                    My CV
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -68,14 +76,27 @@
 
     
     <main>
-<div class="article-wrapper">
-    <article class="main-article">
-        <header class="article-header">
-            <p class="article-meta">23 JANUARY 2025 — </p>
-            <h1 class="article-title">Bài 10: Tổng kết và Đánh giá kết quả Đồ án môn Lập trình mạng</h1>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<div class="noir-article-wrapper">
+    <div class="noise-overlay"></div>
+
+    <article class="noir-article-container">
+        
+        <header class="article-header reveal-text">
+            <div class="article-meta">
+                <span class="date">/// 23 JAN 2025</span>
+                
+            </div>
+            
+            <h1 class="article-title serif-italic">Bài 10: Tổng kết và Đánh giá kết quả Đồ án môn Lập trình mạng</h1>
+            <div class="title-separator"></div>
         </header>
         
-        <div class="article-content">
+        <div class="article-content reveal-up delay-1">
             <style>
     /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, chuyên nghiệp) */
     .main, .post-single {
@@ -197,159 +218,274 @@ Hiểu rõ tại sao server đơn luồng không scale, tại sao Non-Blocking I
 <strong>Ngày hoàn thành:</strong> 23/12/2025</p>
   
         </div>
-        <div class="article-content">
-            <style>
-    /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, chuyên nghiệp) */
-    .main, .post-single {
-        max-width: 1100px !important;
-        margin: 0 auto !important;
-    }
-    
-    /* 2. Font chữ hiện đại, dễ đọc */
-    body, .post-content {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        font-size: 18px !important;
-        line-height: 1.85 !important;
-        color: #222 !important;
-    }
-    
-    .post-content {
-        text-align: justify !important;
-        text-justify: inter-word !important;
-    }
-    
-    /* Tiêu đề lớn hơn, nổi bật */
-    .post-title {
-        text-align: center;
-        font-size: 42px !important;
-        font-weight: 900 !important;
-        margin-bottom: 30px !important;
-        letter-spacing: -1px;
-    }
-    
-    h3 {
-        margin-top: 50px !important;
-        border-bottom: 2px solid #444 !important;
-        padding-bottom: 12px !important;
-        font-size: 26px !important;
-    }
-    
-    /* Danh sách đẹp hơn */
-    ul, ol {
-        margin-left: 20px;
-        padding-left: 20px;
-    }
-    
-    li {
-        margin-bottom: 12px;
-    }
-</style>
-<p>Đồ án môn <strong>Lập trình mạng</strong> là cơ hội tuyệt vời để em – <strong>Huy</strong> – vận dụng toàn bộ kiến thức lý thuyết vào thực tiễn, từ việc xây dựng một hệ thống website tĩnh chuyên nghiệp đến nghiên cứu sâu về các giao thức mạng, Socket, đa luồng và xử lý bất đồng bộ. Bài viết này tổng kết lại toàn bộ hành trình, kết quả đạt được và những bài học quý giá em đã rút ra.</p>
-<h3 id="1-kết-quả-đạt-được">1. Kết quả đạt được</h3>
-<p>Sau hơn 2 tháng nghiên cứu và thực hiện, đồ án đã hoàn thành xuất sắc các mục tiêu đề ra:</p>
-<ul>
-<li>
-<p><strong>Xây dựng thành công Website cá nhân (Blog kỹ thuật):</strong><br>
-Sử dụng <strong>Hugo</strong> – Static Site Generator hiện đại, thiết kế giao diện tối giản, sang trọng, responsive hoàn hảo trên mọi thiết bị. Triển khai ổn định trên <strong>GitHub Pages</strong> với domain cá nhân.</p>
-</li>
-<li>
-<p><strong>Hoàn thành 09 bài viết chuyên sâu về môn học:</strong><br>
-Các bài viết đi sâu vào các chủ đề cốt lõi của Lập trình mạng:</p>
-<ul>
-<li>Socket cơ bản</li>
-<li>Gửi file nhị phân (ảnh) qua Socket</li>
-<li>WebSocket cho ứng dụng realtime</li>
-<li>Blocking vs Non-Blocking IO</li>
-<li>Multithreading trong server</li>
-<li>Xử lý ngoại lệ (Exception) khi lập trình mạng</li>
-<li>Xử lý JSON trong JavaScript</li>
-<li>Và nhiều kiến thức thực tiễn khác</li>
-</ul>
-<p>Mỗi bài đều có <strong>code minh họa đầy đủ</strong>, giải thích chi tiết, kèm theo các best practice thực tế.</p>
-</li>
-<li>
-<p><strong>Áp dụng quy trình quản lý mã nguồn chuyên nghiệp:</strong><br>
-Sử dụng <strong>Git Flow</strong> (branch main, develop, feature) để quản lý phiên bản.<br>
-Commit rõ ràng, có mô tả chi tiết, dễ dàng rollback khi cần.</p>
-</li>
-</ul>
-<h3 id="2-kiến-thức-và-kỹ-năng-tích-lũy">2. Kiến thức và kỹ năng tích lũy</h3>
-<p>Quá trình thực hiện đồ án không chỉ là viết code mà còn là hành trình học hỏi sâu sắc:</p>
-<ul>
-<li>
-<p><strong>Hiểu rõ sự khác biệt giữa lý thuyết và thực tế:</strong><br>
-Trong sách vở, Socket đơn giản lắm. Nhưng khi triển khai thực tế, em gặp phải hàng loạt vấn đề: độ trễ mạng, ngắt kết nối đột ngột, quản lý tài nguyên, xử lý ngoại lệ… Những thứ này không có trong lý thuyết.</p>
-</li>
-<li>
-<p><strong>Nâng cao kỹ năng Debugging &amp; Troubleshooting:</strong><br>
-Thành thạo đọc stack trace, sử dụng công cụ debug (IntelliJ, VS Code), phân tích log lỗi, tìm nguyên nhân từ <code>IOException</code>, <code>SocketTimeoutException</code>, <code>UnknownHostException</code>…</p>
-</li>
-<li>
-<p><strong>Viết code sạch, dễ bảo trì:</strong><br>
-Áp dụng Clean Code: đặt tên biến, hàm rõ ràng; sử dụng try-with-resources; tách logic xử lý client ra thread riêng; comment code chi tiết.</p>
-</li>
-<li>
-<p><strong>Kỹ năng làm việc với công cụ hiện đại:</strong></p>
-<ul>
-<li>Hugo + Markdown để viết blog</li>
-<li>GitHub Pages + GitHub Actions (tự động build &amp; deploy)</li>
-<li>Tailwind CSS hoặc CSS thuần để thiết kế giao diện</li>
-</ul>
-</li>
-<li>
-<p><strong>Tư duy hệ thống:</strong><br>
-Hiểu rõ tại sao server đơn luồng không scale, tại sao Non-Blocking IO mạnh mẽ, tại sao Thread Pool quan trọng hơn tạo thread thủ công…</p>
-</li>
-</ul>
-<h3 id="3-đánh-giá-tự-nhận">3. Đánh giá tự nhận</h3>
-<ul>
-<li><strong>Đạt 100% mục tiêu đề ra</strong> (xây dựng blog + 9 bài viết chuyên sâu).</li>
-<li><strong>Chất lượng code cao</strong>, có xử lý ngoại lệ, đa luồng, realtime… – vượt xa yêu cầu cơ bản của môn học.</li>
-<li><strong>Trình bày rõ ràng, chuyên nghiệp</strong>, phù hợp để làm tài liệu tham khảo cho các bạn sinh viên sau.</li>
-</ul>
-<h3 id="4-lời-cảm-ơn-chân-thành">4. Lời cảm ơn chân thành</h3>
-<p>Em xin gửi lời cảm ơn chân thành đến:</p>
-<ul>
-<li><strong>Giảng viên hướng dẫn</strong> môn Lập trình mạng – Trường Đại học Công nghệ TP.HCM (HUTECH) – đã tận tình giảng dạy, định hướng đề tài và luôn hỗ trợ em trong suốt quá trình.</li>
-<li>Các anh chị, bạn bè trong lớp đã cùng trao đổi, debug, động viên khi gặp khó khăn.</li>
-</ul>
-<p>Cảm ơn mọi người đã đồng hành cùng em trong hành trình này!</p>
-<p><strong>Sinh viên thực hiện:</strong> Nguyễn Trịnh Minh Huy<br>
-<strong>Khoa:</strong> Công nghệ Thông tin – HUTECH<br>
-<strong>Ngày hoàn thành:</strong> 23/12/2025</p>
 
-        </div>
-
-        <div class="post-navigation">
+        <div class="post-navigation reveal-up delay-2">
             
-            <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-9/">
-                <span class="nav-label">← QUAY LẠI</span>
-                
+            <a class="nav-link prev" href="https://minhhuy0211.github.io/posts/bai-viet-9/">
+                <span class="nav-label">← PREVIOUS POST</span>
+                <span class="nav-title">Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc</span>
             </a>
             
 
             
-            <div class="nav-placeholder"></div>
+            <div class="nav-spacer"></div>
             
         </div>
-        </article>
-</div>
+
     </article>
 </div>
 
 <style>
-     
-     
-    .article-wrapper { margin-top: 120px; display: flex; justify-content: center; padding-bottom: 100px; }
-    .main-article { max-width: 800px; width: 90%; padding: 0 20px; }
-    .article-header { text-align: center; margin-bottom: 60px; }
-    .article-meta { color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-    .article-title { font-size: 40px; font-weight: 900; line-height: 1.3; }
-    .article-content { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.8; text-align: justify; }
-    .article-content h2, .article-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; margin-top: 40px; }
-    .article-content pre { background: #f4f4f4; padding: 20px; border-radius: 5px; overflow-x: auto; font-size: 14px; border: 1px solid #ddd; }
-    .article-content code { font-family: 'Courier New', monospace; color: #d63384; }
-    .article-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; }
+ 
+:root {
+    --bg-dark: #0e0e0e;
+    --text-light: #e0e0e0;      
+    --text-dim: #888;
+    --border-color: rgba(255,255,255,0.1);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --code-bg: #1a1a1a;
+    --accent: #fff;
+}
+
+ 
+html, body {
+    margin: 0; padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+ 
+footer, .footer, .nav, .header, .logo-switches, #top-link { display: none !important; }
+
+ 
+.noir-article-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+ 
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.noir-article-container {
+    max-width: 740px;  
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+ 
+.article-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.article-meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.article-title {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.title-separator {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--border-color), transparent);
+    margin: 0 auto;
+}
+
+ 
+.article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;  
+    text-align: justify;
+}
+
+ 
+.article-content h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    color: #fff;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.article-content h3 {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+ 
+.article-content p {
+    margin-bottom: 25px;
+}
+
+ 
+.article-content a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+}
+.article-content a:hover {
+    border-bottom-color: #fff;
+}
+
+ 
+.article-content blockquote {
+    border-left: 2px solid #fff;
+    margin: 40px 0;
+    padding-left: 25px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: #fff;
+}
+
+ 
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 40px auto;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);  
+    filter: brightness(0.9);  
+    transition: 0.3s;
+}
+.article-content img:hover {
+    filter: brightness(1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.article-content pre {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+.article-content code {
+    font-family: 'Space Mono', monospace;  
+    color: #e0e0e0;
+}
+ 
+.article-content p code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+ 
+.article-content ul, .article-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+.article-content li {
+    margin-bottom: 10px;
+}
+
+ 
+.post-navigation {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.nav-link {
+    flex: 1;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dim);
+    transition: all 0.4s ease;
+    border-bottom: none !important;  
+}
+
+.nav-link.next { text-align: right; }
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-style: italic;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.nav-link:hover .nav-title {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.nav-spacer { flex: 1; }
+
+ 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-text { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.reveal-up { opacity: 0; animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+ 
+@media (max-width: 768px) {
+    .noir-article-wrapper { padding: 80px 20px; }
+    .article-content { font-size: 16px; }
+    .post-navigation { flex-direction: column; gap: 30px; }
+    .nav-link.next { text-align: left; }
+}
 </style>
 
     </main>

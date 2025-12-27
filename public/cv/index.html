@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Page not found - Nguyễn Trịnh Minh Huy</title>
+    <title>CV - Nguyễn Trịnh Minh Huy - Nguyễn Trịnh Minh Huy</title>
 
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@
              
             <li>
                 <a href="https://minhhuy0211.github.io/cv/"
-                   class="">
+                   class="active">
                     My CV
                 </a>
             </li>
@@ -76,7 +76,69 @@
 
     
     <main>
-<div class="not-found">404</div>
+
+<style>
+     
+    .cv-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #f4f4f4;  
+        display: flex;
+        flex-direction: column;  
+        align-items: center;     
+        
+         
+        padding-top: 150px;      
+        padding-bottom: 60px;
+    }
+
+     
+    .cv-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;        
+        font-weight: 900;      
+        color: #2c3e50;        
+        margin-bottom: 40px;    
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+
+     
+    .cv-image-link {
+        display: block;
+        width: 90%;             
+        max-width: 1000px;      
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);  
+        transition: transform 0.3s ease; 
+        background-color: white;  
+    }
+
+     
+    .cv-image-link:hover {
+        transform: translateY(-5px);  
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .cv-image-link img {
+        width: 100%;
+        height: auto;       
+        display: block;     
+        border-radius: 4px; 
+    }
+</style>
+
+<div class="cv-container">
+    
+    <h1 class="cv-title">CV - Nguyễn Trịnh Minh Huy</h1>
+
+    <a href="https://www.facebook.com/" target="_blank" class="cv-image-link" title="Nhấn vào để xem chi tiết">
+        <img src="/cv.jpg" alt="CV Nguyễn Trịnh Minh Huy">
+    </a>
+
+</div>
+
+
     </main>
 
 </body>

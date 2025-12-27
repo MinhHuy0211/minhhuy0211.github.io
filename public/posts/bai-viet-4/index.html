@@ -61,6 +61,14 @@
                     LIÊN HỆ
                 </a>
             </li>
+
+             
+            <li>
+                <a href="https://minhhuy0211.github.io/cv/"
+                   class="">
+                    My CV
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -68,14 +76,30 @@
 
     
     <main>
-<div class="article-wrapper">
-    <article class="main-article">
-        <header class="article-header">
-            <p class="article-meta">18 JANUARY 2025 — [Java Socket File Transfer Network Programming]</p>
-            <h1 class="article-title">Bài 4: Hướng dẫn gửi File ảnh qua Socket trong Java</h1>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<div class="noir-article-wrapper">
+    <div class="noise-overlay"></div>
+
+    <article class="noir-article-container">
+        
+        <header class="article-header reveal-text">
+            <div class="article-meta">
+                <span class="date">/// 18 JAN 2025</span>
+                
+                <span class="separator">—</span>
+                <span class="tags">Java, Socket, File Transfer, Network Programming</span>
+                
+            </div>
+            
+            <h1 class="article-title serif-italic">Bài 4: Hướng dẫn gửi File ảnh qua Socket trong Java</h1>
+            <div class="title-separator"></div>
         </header>
         
-        <div class="article-content">
+        <div class="article-content reveal-up delay-1">
             <p>Trong các bài trước, chúng ta đã biết cách thiết lập kết nối Socket và gửi/nhận dữ liệu text đơn giản.<br>
 Nhưng khi cần gửi <strong>file nhị phân</strong> như ảnh, video, nhạc, tài liệu PDF… thì không thể dùng <code>Reader/Writer</code> (dành cho text) nữa, vì chúng sẽ làm hỏng dữ liệu binary.</p>
 <p>Thay vào đó, ta phải làm việc trực tiếp với <strong>luồng byte</strong> (<code>InputStream</code> / <code>OutputStream</code>).</p>
@@ -147,112 +171,277 @@ Nhưng khi cần gửi <strong>file nhị phân</strong> như ảnh, video, nh�
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>  
         </div>
-        <div class="article-content">
-            <p>Trong các bài trước, chúng ta đã biết cách thiết lập kết nối Socket và gửi/nhận dữ liệu text đơn giản.<br>
-Nhưng khi cần gửi <strong>file nhị phân</strong> như ảnh, video, nhạc, tài liệu PDF… thì không thể dùng <code>Reader/Writer</code> (dành cho text) nữa, vì chúng sẽ làm hỏng dữ liệu binary.</p>
-<p>Thay vào đó, ta phải làm việc trực tiếp với <strong>luồng byte</strong> (<code>InputStream</code> / <code>OutputStream</code>).</p>
-<p>Bài hôm nay sẽ xây dựng một ứng dụng <strong>Client-Server hoàn chỉnh</strong> để gửi một file ảnh từ Client lên Server và Server lưu lại.</p>
-<h3 id="1-nguyên-tắc-truyền-file-qua-socket">1. Nguyên tắc truyền file qua Socket</h3>
-<ul>
-<li>Client: Đọc file từ ổ cứng bằng <code>FileInputStream</code> → đẩy byte ra mạng qua <code>socket.getOutputStream()</code>.</li>
-<li>Server: Nhận byte từ mạng qua <code>socket.getInputStream()</code> → ghi vào file mới bằng <code>FileOutputStream</code>.</li>
-<li>Truyền theo <strong>khối (chunk)</strong> (thường 4KB - 64KB) để tránh tải toàn bộ file vào bộ nhớ.</li>
-<li>Nên gửi thêm <strong>kích thước file</strong> và <strong>tên file</strong> trước để Server biết cách lưu.</li>
-</ul>
-<h3 id="2-code-server-nhận-file">2. Code Server (Nhận file)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.*;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileServer</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> PORT <span style="color:#f92672">=</span> 8080;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(PORT)) {
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đang chạy trên port &#34;</span> <span style="color:#f92672">+</span> PORT <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;...&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
-</span></span><span style="display:flex;"><span>                Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
-</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client kết nối: &#34;</span> <span style="color:#f92672">+</span> clientSocket.<span style="color:#a6e22e">getInetAddress</span>());
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> Thread(() <span style="color:#f92672">-&gt;</span> handleClient(clientSocket)).<span style="color:#a6e22e">start</span>();
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
-</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handleClient</span>(Socket socket) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (
-</span></span><span style="display:flex;"><span>            DataInputStream dis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataInputStream(socket.<span style="color:#a6e22e">getInputStream</span>());
-</span></span><span style="display:flex;"><span>            ) {
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 1. Nhận tên file</span>
-</span></span><span style="display:flex;"><span>            String fileName <span style="color:#f92672">=</span> dis.<span style="color:#a6e22e">readUTF</span>();
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2. Nhận kích thước file</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">long</span> fileSize <span style="color:#f92672">=</span> dis.<span style="color:#a6e22e">readLong</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 3. Tạo file mới để lưu</span>
-</span></span><span style="display:flex;"><span>            FileOutputStream fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(<span style="color:#e6db74">&#34;received_&#34;</span> <span style="color:#f92672">+</span> fileName);
-</span></span><span style="display:flex;"><span>            BufferedOutputStream bos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream(fos);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> buffer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>8192<span style="color:#f92672">]</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> bytesRead;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">long</span> totalRead <span style="color:#f92672">=</span> 0;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đang nhận file: &#34;</span> <span style="color:#f92672">+</span> fileName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; (&#34;</span> <span style="color:#f92672">+</span> fileSize <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; bytes)&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 4. Nhận và ghi dữ liệu</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (totalRead <span style="color:#f92672">&lt;</span> fileSize <span style="color:#f92672">&amp;&amp;</span> (bytesRead <span style="color:#f92672">=</span> dis.<span style="color:#a6e22e">read</span>(buffer, 0, 
-</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">int</span>) Math.<span style="color:#a6e22e">min</span>(buffer.<span style="color:#a6e22e">length</span>, fileSize <span style="color:#f92672">-</span> totalRead))) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1) {
-</span></span><span style="display:flex;"><span>                bos.<span style="color:#a6e22e">write</span>(buffer, 0, bytesRead);
-</span></span><span style="display:flex;"><span>                totalRead <span style="color:#f92672">+=</span> bytesRead;
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            bos.<span style="color:#a6e22e">flush</span>();
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận file hoàn tất: &#34;</span> <span style="color:#f92672">+</span> fileName);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi khi nhận file: &#34;</span> <span style="color:#f92672">+</span> e.<span style="color:#a6e22e">getMessage</span>());
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> { socket.<span style="color:#a6e22e">close</span>(); } <span style="color:#66d9ef">catch</span> (IOException e) {}
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-        </div>
 
-        <div class="post-navigation">
+        <div class="post-navigation reveal-up delay-2">
             
-            <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-3/">
-                <span class="nav-label">← QUAY LẠI</span>
-                
+            <a class="nav-link prev" href="https://minhhuy0211.github.io/posts/bai-viet-3/">
+                <span class="nav-label">← PREVIOUS POST</span>
+                <span class="nav-title">Bài 3: Callback Hell trong JavaScript và cách né tránh</span>
             </a>
             
 
             
-            <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-5/">
-                <span class="nav-label">TIẾP THEO →</span>
-                
+            <a class="nav-link next" href="https://minhhuy0211.github.io/posts/bai-viet-5/">
+                <span class="nav-label">NEXT POST →</span>
+                <span class="nav-title">Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</span>
             </a>
             
         </div>
-        </article>
-</div>
+
     </article>
 </div>
 
 <style>
-     
-     
-    .article-wrapper { margin-top: 120px; display: flex; justify-content: center; padding-bottom: 100px; }
-    .main-article { max-width: 800px; width: 90%; padding: 0 20px; }
-    .article-header { text-align: center; margin-bottom: 60px; }
-    .article-meta { color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-    .article-title { font-size: 40px; font-weight: 900; line-height: 1.3; }
-    .article-content { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.8; text-align: justify; }
-    .article-content h2, .article-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; margin-top: 40px; }
-    .article-content pre { background: #f4f4f4; padding: 20px; border-radius: 5px; overflow-x: auto; font-size: 14px; border: 1px solid #ddd; }
-    .article-content code { font-family: 'Courier New', monospace; color: #d63384; }
-    .article-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; }
+ 
+:root {
+    --bg-dark: #0e0e0e;
+    --text-light: #e0e0e0;      
+    --text-dim: #888;
+    --border-color: rgba(255,255,255,0.1);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --code-bg: #1a1a1a;
+    --accent: #fff;
+}
+
+ 
+html, body {
+    margin: 0; padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+ 
+footer, .footer, .nav, .header, .logo-switches, #top-link { display: none !important; }
+
+ 
+.noir-article-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+ 
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.noir-article-container {
+    max-width: 740px;  
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+ 
+.article-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.article-meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.article-title {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.title-separator {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--border-color), transparent);
+    margin: 0 auto;
+}
+
+ 
+.article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;  
+    text-align: justify;
+}
+
+ 
+.article-content h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    color: #fff;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.article-content h3 {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+ 
+.article-content p {
+    margin-bottom: 25px;
+}
+
+ 
+.article-content a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+}
+.article-content a:hover {
+    border-bottom-color: #fff;
+}
+
+ 
+.article-content blockquote {
+    border-left: 2px solid #fff;
+    margin: 40px 0;
+    padding-left: 25px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: #fff;
+}
+
+ 
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 40px auto;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);  
+    filter: brightness(0.9);  
+    transition: 0.3s;
+}
+.article-content img:hover {
+    filter: brightness(1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.article-content pre {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+.article-content code {
+    font-family: 'Space Mono', monospace;  
+    color: #e0e0e0;
+}
+ 
+.article-content p code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+ 
+.article-content ul, .article-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+.article-content li {
+    margin-bottom: 10px;
+}
+
+ 
+.post-navigation {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.nav-link {
+    flex: 1;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dim);
+    transition: all 0.4s ease;
+    border-bottom: none !important;  
+}
+
+.nav-link.next { text-align: right; }
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-style: italic;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.nav-link:hover .nav-title {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.nav-spacer { flex: 1; }
+
+ 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-text { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.reveal-up { opacity: 0; animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+ 
+@media (max-width: 768px) {
+    .noir-article-wrapper { padding: 80px 20px; }
+    .article-content { font-size: 16px; }
+    .post-navigation { flex-direction: column; gap: 30px; }
+    .nav-link.next { text-align: left; }
+}
 </style>
 
     </main>

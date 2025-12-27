@@ -1,0 +1,64 @@
+{{ define "main" }}
+
+<style>
+    /* 1. Thiết lập nền và căn giữa */
+    .cv-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #f4f4f4; /* Màu nền xám nhẹ */
+        display: flex;
+        flex-direction: column; /* Xếp dọc: Chữ trên, Ảnh dưới */
+        align-items: center;    /* Căn giữa ngang */
+        
+        /* 👇 ĐÃ SỬA: Tăng khoảng cách lề trên để không bị che bởi menu */
+        padding-top: 150px;      
+        padding-bottom: 60px;
+    }
+
+    /* 2. Style cho tiêu đề */
+    .cv-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;       /* Chữ to vừa phải */
+        font-weight: 900;      
+        color: #2c3e50;        
+        margin-bottom: 40px;   /* Khoảng cách giữa Chữ và Ảnh */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+
+    /* 3. Style cho Ảnh (Link) */
+    .cv-image-link {
+        display: block;
+        width: 90%;            /* Chiếm 90% màn hình đt */
+        max-width: 1000px;     /* Không quá to trên máy tính */
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* Đổ bóng */
+        transition: transform 0.3s ease; 
+        background-color: white; /* Nền trắng viền ảnh */
+    }
+
+    /* Hiệu ứng khi di chuột vào ảnh */
+    .cv-image-link:hover {
+        transform: translateY(-5px); /* Bay lên nhẹ */
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .cv-image-link img {
+        width: 100%;
+        height: auto;       
+        display: block;     
+        border-radius: 4px; 
+    }
+</style>
+
+<div class="cv-container">
+    
+    <h1 class="cv-title">{{ .Title }}</h1>
+
+    <a href="https://www.facebook.com/" target="_blank" class="cv-image-link" title="Nhấn vào để xem chi tiết">
+        <img src="/cv.jpg" alt="CV Nguyễn Trịnh Minh Huy">
+    </a>
+
+</div>
+
+{{ end }}
