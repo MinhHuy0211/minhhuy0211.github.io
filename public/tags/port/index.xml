@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Port on Nguyễn Trịnh Minh Huy</title>
+    <link>https://minhhuy0211.github.io/tags/port/</link>
+    <description>Recent content in Port on Nguyễn Trịnh Minh Huy</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://minhhuy0211.github.io/tags/port/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bài 2: Port là gì? Tại sao Server hay dùng cổng 8080?</title>
+      <link>https://minhhuy0211.github.io/posts/bai-viet-2/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/posts/bai-viet-2/</guid>
+      <description>Giải thích rõ ràng khái niệm Port trong mạng máy tính, phân loại port, lý do dùng 8080 cho server dev và cách tránh xung đột port thực tế.</description>
+    </item>
+  </channel>
+</rss>

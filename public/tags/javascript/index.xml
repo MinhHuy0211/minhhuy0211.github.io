@@ -13,21 +13,21 @@
       <link>https://minhhuy0211.github.io/posts/bai-viet-3/</link>
       <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-3/</guid>
-      <description>Viết code JS lồng nhau quá nhiều sẽ tạo ra thảm họa.</description>
+      <description>Hiểu rõ Callback Hell là gì, tại sao nó nguy hiểm và các cách hiện đại để viết code async sạch sẽ, dễ đọc, dễ bảo trì.</description>
     </item>
     <item>
       <title>Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-5/</link>
       <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-5/</guid>
-      <description>Tại sao Facebook, Zalo lại dùng WebSocket thay vì HTTP thông thường?</description>
+      <description>Tại sao các ứng dụng chat như Facebook, Zalo, Discord lại dùng WebSocket thay vì HTTP polling? Giải thích cơ chế hoạt động và cách dùng trong JavaScript.</description>
     </item>
     <item>
-      <title>Bài 7: Xử lý dữ liệu JSON trong JavaScript</title>
+      <title>Bài 7: Xử lý dữ liệu JSON trong JavaScript – JSON.parse() và JSON.stringify()</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-7/</link>
       <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-7/</guid>
-      <description>Hai hàm quan trọng nhất khi làm việc với API.</description>
+      <description>Hướng dẫn chuyên sâu về hai hàm JSON.parse() và JSON.stringify() – công cụ không thể thiếu khi làm việc với API, fetch, localStorage và truyền dữ liệu Client-Server.</description>
     </item>
   </channel>
 </rss>

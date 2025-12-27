@@ -13,70 +13,77 @@
       <link>https://minhhuy0211.github.io/posts/bai-viet-1/</link>
       <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-1/</guid>
-      <description>Sử dụng class InetAddress để định danh máy tính.</description>
+      <description>Hướng dẫn chi tiết cách sử dụng class InetAddress để lấy địa chỉ IP của máy local, xử lý trường hợp nhiều card mạng và các lưu ý thực tế khi lập trình mạng.</description>
     </item>
     <item>
       <title>Bài 2: Port là gì? Tại sao Server hay dùng cổng 8080?</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-2/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-2/</guid>
-      <description>Hiểu về khái niệm Port (Cổng) để tránh xung đột khi chạy phần mềm.</description>
+      <description>Giải thích rõ ràng khái niệm Port trong mạng máy tính, phân loại port, lý do dùng 8080 cho server dev và cách tránh xung đột port thực tế.</description>
     </item>
     <item>
       <title>Bài 3: Callback Hell trong JavaScript và cách né tránh</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-3/</link>
       <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-3/</guid>
-      <description>Viết code JS lồng nhau quá nhiều sẽ tạo ra thảm họa.</description>
+      <description>Hiểu rõ Callback Hell là gì, tại sao nó nguy hiểm và các cách hiện đại để viết code async sạch sẽ, dễ đọc, dễ bảo trì.</description>
     </item>
     <item>
       <title>Bài 4: Hướng dẫn gửi File ảnh qua Socket trong Java</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-4/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-4/</guid>
-      <description>Gửi text thì dễ, gửi file nhị phân (ảnh, nhạc) thì phải dùng FileInputStream.</description>
+      <description>Hướng dẫn chi tiết cách truyền file nhị phân (ảnh, video, nhạc&amp;hellip;) qua Socket bằng luồng byte, kèm code đầy đủ Client-Server và các lưu ý thực tế.</description>
     </item>
     <item>
       <title>Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-5/</link>
       <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-5/</guid>
-      <description>Tại sao Facebook, Zalo lại dùng WebSocket thay vì HTTP thông thường?</description>
+      <description>Tại sao các ứng dụng chat như Facebook, Zalo, Discord lại dùng WebSocket thay vì HTTP polling? Giải thích cơ chế hoạt động và cách dùng trong JavaScript.</description>
     </item>
     <item>
       <title>Bài 6: Phân biệt Blocking IO và Non-Blocking IO</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-6/</link>
       <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-6/</guid>
-      <description>Khái niệm quan trọng để tối ưu hiệu năng Server.</description>
+      <description>Phân tích sâu sự khác biệt giữa Blocking IO và Non-Blocking IO, minh họa bằng code thực tế, so sánh hiệu suất và hướng dẫn khi nào nên dùng cái nào trong dự án Java.</description>
     </item>
     <item>
-      <title>Bài 7: Xử lý dữ liệu JSON trong JavaScript</title>
+      <title>Bài 7: Xử lý dữ liệu JSON trong JavaScript – JSON.parse() và JSON.stringify()</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-7/</link>
       <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-7/</guid>
-      <description>Hai hàm quan trọng nhất khi làm việc với API.</description>
+      <description>Hướng dẫn chuyên sâu về hai hàm JSON.parse() và JSON.stringify() – công cụ không thể thiếu khi làm việc với API, fetch, localStorage và truyền dữ liệu Client-Server.</description>
     </item>
     <item>
-      <title>Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng</title>
+      <title>Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng trong Java</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-8/</link>
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-8/</guid>
-      <description>Mạng rớt, Server sập&amp;hellip; làm sao để chương trình không bị Crash?</description>
+      <description>Hướng dẫn chi tiết cách xử lý ngoại lệ khi lập trình mạng để chương trình không crash khi gặp lỗi kết nối, đọc/ghi dữ liệu hay server sập.</description>
     </item>
     <item>
       <title>Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-9/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-9/</guid>
-      <description>Nếu không có Đa luồng, Server của bạn chỉ phục vụ được đúng 1 người, người thứ 2 sẽ bị treo. Tại sao?</description>
+      <description>Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để xử lý hàng trăm kết nối đồng thời một cách hiệu quả.</description>
     </item>
     <item>
       <title>Bài 10: Tổng kết và Đánh giá kết quả Đồ án môn Lập trình mạng</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-10/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-10/</guid>
-      <description>Báo cáo tổng kết quá trình thực hiện, các kết quả đạt được và kiến thức tích lũy từ đồ án xây dựng Blog cá nhân.</description>
+      <description>Báo cáo tổng kết toàn bộ quá trình thực hiện đồ án xây dựng Blog cá nhân chuyên sâu về lập trình mạng, kết quả đạt được và những bài học quý giá.</description>
+    </item>
+    <item>
+      <title>Chứng chỉ</title>
+      <link>https://minhhuy0211.github.io/certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/certificates/</guid>
+      <description>Một vài chứng chỉ mình đã hoàn thành.</description>
     </item>
     <item>
       <title>Liên hệ</title>

@@ -32,7 +32,13 @@
     <loc>https://minhhuy0211.github.io/posts/bai-viet-10/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://minhhuy0211.github.io/tags/concurrency/</loc>
+    <lastmod>2025-12-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://minhhuy0211.github.io/tags/java/</loc>
+    <lastmod>2025-12-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/multithreading/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://minhhuy0211.github.io/</loc>
@@ -53,28 +59,81 @@
     <loc>https://minhhuy0211.github.io/tags/best-practice/</loc>
     <lastmod>2025-12-22T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://minhhuy0211.github.io/tags/exception-handling/</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/network/</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/socket/</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/api/</loc>
+    <lastmod>2025-12-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/frontend/</loc>
+    <lastmod>2025-12-21T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://minhhuy0211.github.io/tags/javascript/</loc>
     <lastmod>2025-12-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://minhhuy0211.github.io/tags/json/</loc>
     <lastmod>2025-12-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://minhhuy0211.github.io/tags/theory/</loc>
+    <loc>https://minhhuy0211.github.io/tags/parse/</loc>
+    <lastmod>2025-12-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/stringify/</loc>
+    <lastmod>2025-12-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/blocking/</loc>
     <lastmod>2025-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://minhhuy0211.github.io/tags/network/</loc>
+    <loc>https://minhhuy0211.github.io/tags/io/</loc>
+    <lastmod>2025-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/nio/</loc>
+    <lastmod>2025-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/non-blocking/</loc>
+    <lastmod>2025-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/realtime/</loc>
+    <lastmod>2025-12-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/websocket/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://minhhuy0211.github.io/tags/file-transfer/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://minhhuy0211.github.io/tags/socket/</loc>
+    <loc>https://minhhuy0211.github.io/tags/network-programming/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://minhhuy0211.github.io/tags/async/</loc>
     <lastmod>2025-12-17T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://minhhuy0211.github.io/tags/async/await/</loc>
+    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/callback-hell/</loc>
+    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/promise/</loc>
+    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/port/</loc>
+    <lastmod>2025-12-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/inetaddress/</loc>
+    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/tags/ip-address/</loc>
+    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://minhhuy0211.github.io/categories/</loc>
+  </url><url>
+    <loc>https://minhhuy0211.github.io/certificates/</loc>
   </url><url>
     <loc>https://minhhuy0211.github.io/contact/</loc>
   </url><url>

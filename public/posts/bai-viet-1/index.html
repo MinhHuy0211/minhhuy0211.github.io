@@ -14,71 +14,98 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
 <div class="article-wrapper">
     <article class="main-article">
         <header class="article-header">
-            <p class="article-meta">15 JANUARY 2025 — [Java Network]</p>
+            <p class="article-meta">15 JANUARY 2025 — [Java Network InetAddress IP Address]</p>
             <h1 class="article-title">Bài 1: Làm sao biết máy mình đang dùng IP gì trong Java?</h1>
         </header>
         
         <div class="article-content">
-            <p>Trong lập trình mạng, trước khi kết nối, ta phải biết &ldquo;địa chỉ nhà&rdquo; (IP) của mình và đối phương. Java cung cấp class <code>InetAddress</code> để làm việc này.</p>
-<h3 id="code-lấy-ip-của-máy-localhost">Code lấy IP của máy (Localhost)</h3>
+            <p>Trong lập trình mạng với Java, việc xác định địa chỉ IP của chính máy mình (localhost) là một trong những bước cơ bản nhất trước khi thiết lập kết nối socket, xây dựng server hay client. Java cung cấp class <strong><code>InetAddress</code></strong> trong package <code>java.net</code> để hỗ trợ việc này một cách đơn giản, mạnh mẽ và đáng tin cậy.</p>
+<p>Bài viết này sẽ hướng dẫn bạn từ cách lấy IP cơ bản nhất đến xử lý các tình huống thực tế như máy có nhiều card mạng (Wi-Fi + Ethernet + VPN).</p>
+<h3 id="1-giới-thiệu-về-class-inetaddress">1. Giới thiệu về class <code>InetAddress</code></h3>
+<p><code>InetAddress</code> là lớp đại diện cho một địa chỉ IP (hỗ trợ cả IPv4 và IPv6). Đặc biệt:</p>
+<ul>
+<li>Không có constructor public → chỉ tạo được instance qua các phương thức static.</li>
+<li>Các phương thức chính thường dùng:
+<ul>
+<li><code>InetAddress.getLocalHost()</code> → Lấy địa chỉ của máy hiện tại.</li>
+<li><code>InetAddress.getByName(String host)</code> → Lấy địa chỉ từ hostname hoặc IP string.</li>
+<li><code>InetAddress.getAllByName(String host)</code> → Lấy tất cả IP liên kết với một hostname.</li>
+<li><code>InetAddress.getLoopbackAddress()</code> → Trả về địa chỉ loopback (127.0.0.1 hoặc ::1).</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-cách-đơn-giản-nhất-lấy-ip-và-hostname-của-máy-local">2. Cách đơn giản nhất: Lấy IP và hostname của máy local</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.InetAddress;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.UnknownHostException;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyIP</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyLocalIP</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>            InetAddress myIP <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getLocalHost</span>();
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tên máy: &#34;</span> <span style="color:#f92672">+</span> myIP.<span style="color:#a6e22e">getHostName</span>());
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Địa chỉ IP: &#34;</span> <span style="color:#f92672">+</span> myIP.<span style="color:#a6e22e">getHostAddress</span>());
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            InetAddress localHost <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getLocalHost</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hostname:             &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostName</span>());
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Địa chỉ IP:           &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostAddress</span>());
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Canonical Hostname:   &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getCanonicalHostName</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (UnknownHostException e) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Không thể xác định địa chỉ của máy local.&#34;</span>);
 </span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
@@ -86,17 +113,36 @@
 </span></span></code></pre></div>  
         </div>
         <div class="article-content">
-            <p>Trong lập trình mạng, trước khi kết nối, ta phải biết &ldquo;địa chỉ nhà&rdquo; (IP) của mình và đối phương. Java cung cấp class <code>InetAddress</code> để làm việc này.</p>
-<h3 id="code-lấy-ip-của-máy-localhost">Code lấy IP của máy (Localhost)</h3>
+            <p>Trong lập trình mạng với Java, việc xác định địa chỉ IP của chính máy mình (localhost) là một trong những bước cơ bản nhất trước khi thiết lập kết nối socket, xây dựng server hay client. Java cung cấp class <strong><code>InetAddress</code></strong> trong package <code>java.net</code> để hỗ trợ việc này một cách đơn giản, mạnh mẽ và đáng tin cậy.</p>
+<p>Bài viết này sẽ hướng dẫn bạn từ cách lấy IP cơ bản nhất đến xử lý các tình huống thực tế như máy có nhiều card mạng (Wi-Fi + Ethernet + VPN).</p>
+<h3 id="1-giới-thiệu-về-class-inetaddress">1. Giới thiệu về class <code>InetAddress</code></h3>
+<p><code>InetAddress</code> là lớp đại diện cho một địa chỉ IP (hỗ trợ cả IPv4 và IPv6). Đặc biệt:</p>
+<ul>
+<li>Không có constructor public → chỉ tạo được instance qua các phương thức static.</li>
+<li>Các phương thức chính thường dùng:
+<ul>
+<li><code>InetAddress.getLocalHost()</code> → Lấy địa chỉ của máy hiện tại.</li>
+<li><code>InetAddress.getByName(String host)</code> → Lấy địa chỉ từ hostname hoặc IP string.</li>
+<li><code>InetAddress.getAllByName(String host)</code> → Lấy tất cả IP liên kết với một hostname.</li>
+<li><code>InetAddress.getLoopbackAddress()</code> → Trả về địa chỉ loopback (127.0.0.1 hoặc ::1).</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-cách-đơn-giản-nhất-lấy-ip-và-hostname-của-máy-local">2. Cách đơn giản nhất: Lấy IP và hostname của máy local</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.InetAddress;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.UnknownHostException;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyIP</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyLocalIP</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>            InetAddress myIP <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getLocalHost</span>();
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tên máy: &#34;</span> <span style="color:#f92672">+</span> myIP.<span style="color:#a6e22e">getHostName</span>());
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Địa chỉ IP: &#34;</span> <span style="color:#f92672">+</span> myIP.<span style="color:#a6e22e">getHostAddress</span>());
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            InetAddress localHost <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getLocalHost</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hostname:             &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostName</span>());
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Địa chỉ IP:           &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getHostAddress</span>());
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Canonical Hostname:   &#34;</span> <span style="color:#f92672">+</span> localHost.<span style="color:#a6e22e">getCanonicalHostName</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (UnknownHostException e) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Không thể xác định địa chỉ của máy local.&#34;</span>);
 </span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
@@ -111,7 +157,7 @@
 
             
             <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-2/">
-                <span class="nav-label">BÀI TIẾP THEO →</span>
+                <span class="nav-label">TIẾP THEO →</span>
                 
             </a>
             

@@ -13,7 +13,7 @@
       <link>https://minhhuy0211.github.io/posts/bai-viet-9/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-9/</guid>
-      <description>Nếu không có Đa luồng, Server của bạn chỉ phục vụ được đúng 1 người, người thứ 2 sẽ bị treo. Tại sao?</description>
+      <description>Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để xử lý hàng trăm kết nối đồng thời một cách hiệu quả.</description>
     </item>
   </channel>
 </rss>

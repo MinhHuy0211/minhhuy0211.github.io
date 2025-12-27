@@ -3,35 +3,23 @@ title: "Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 kh�
 date: 2025-12-23
 weight: 9
 draft: false
-tags: ["Java", "Thread", "Server"]
-summary: "Nếu không có Đa luồng, Server của bạn chỉ phục vụ được đúng 1 người, người thứ 2 sẽ bị treo. Tại sao?"
+tags: ["Java", "Multithreading", "Thread", "Server", "Concurrency"]
+summary: "Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để xử lý hàng trăm kết nối đồng thời một cách hiệu quả."
+thumbnail: "/sachhutech.jpg" # Thêm ảnh minh họa nếu có
 ---
 
-Nếu bạn chạy code Server cơ bản, khi Client A kết nối, Server sẽ bận nói chuyện với A. Lúc này Client B kết nối tới sẽ bị "quay đều" (treo) cho đến khi A thoát ra.
-=> Để khắc phục, ta phải dùng **Thread** (Luồng).
+Trong các bài trước, chúng ta đã viết server socket cơ bản. Nhưng nếu chạy thử với nhiều client, bạn sẽ thấy vấn đề lớn:  
+**Khi một client đang kết nối và trao đổi dữ liệu, các client khác phải chờ đến lượt – thậm chí bị treo hoàn toàn!**
 
-### Mô hình Server Đa luồng
-Tưởng tượng Server là một ông chủ quán (Main Thread):
-1.  Ông chủ đứng ở cửa (`socket.accept()`).
-2.  Khách A tới => Ông chủ thuê nhân viên 1 ra tiếp A.
-3.  Ông chủ quay lại cửa đứng chờ tiếp.
-4.  Khách B tới => Ông chủ thuê nhân viên 2 ra tiếp B.
+Đây chính là hạn chế của **server đơn luồng (single-threaded)**. Bài hôm nay sẽ giúp bạn biến server thành **đa luồng**, phục vụ hàng trăm client cùng lúc một cách mượt mà.
 
-### Code minh họa (Java)
+### 1. Tại sao server đơn luồng lại "chỉ tiếp được 1 khách"?
+Hãy xem lại code server cơ bản:
 
 ```java
 while (true) {
-    // 1. Chờ khách tới (Main Thread bị block ở đây)
-    Socket clientSocket = serverSocket.accept();
-    
-    // 2. Có khách! Tạo một luồng riêng (Nhân viên) để xử lý
-    Thread t = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            xuLyCongViec(clientSocket); // Nhân viên làm việc ở đây
-        }
-    });
-    
-    // 3. Đẩy nhân viên ra làm việc, ông chủ quay lại vòng lặp chờ khách mới
-    t.start();
+    Socket client = serverSocket.accept();  // Main thread BLOCK ở đây chờ client
+    // Xử lý toàn bộ giao tiếp với client này (đọc + ghi + logic)
+    handleClient(client);  // Trong lúc này, không client nào khác kết nối được!
+    client.close();
 }

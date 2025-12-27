@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exception Handling - Nguyễn Trịnh Minh Huy</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    
+<link rel="stylesheet" href="https://minhhuy0211.github.io/css/style.css">
+</head>
+<body>
+
+    
+<header class="luxury-header">
+    <nav class="luxury-nav">
+
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="">
+                    BLOG
+                </a>
+            </li>
+
+            
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+    
+    <main>
+
+<style>
+     
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-color: #555555;
+        --text-light: #999999;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+     
+    .blog-wrapper {
+        background-color: var(--bg-color);
+        padding: 4rem 1rem;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .blog-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 3rem;
+        letter-spacing: -1px;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+     
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+     
+    .post-card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;  
+    }
+
+    .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+     
+    .post-thumb {
+        width: 100%;
+        height: 220px;  
+        overflow: hidden;
+        position: relative;
+    }
+
+    .post-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  
+        transition: transform 0.5s ease;
+    }
+
+    .post-card:hover .post-thumb img {
+        transform: scale(1.05);  
+    }
+
+     
+    .post-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;  
+    }
+
+    .post-date {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .post-heading {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0 0 1rem 0;
+        line-height: 1.4;
+    }
+
+    .post-summary {
+        font-size: 0.95rem;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;  
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+     
+    .read-btn {
+        margin-top: auto;  
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.2s;
+    }
+
+    .post-card:hover .read-btn {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+
+     
+    @media (max-width: 768px) {
+        .blog-wrapper {
+            padding: 2rem 1rem;
+        }
+        
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-grid {
+            grid-template-columns: 1fr;  
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<div class="blog-wrapper">
+    <div class="blog-container">
+        <h1 class="blog-title">Latest Articles</h1>
+        
+        <div class="post-grid">
+            
+            <a href="https://minhhuy0211.github.io/posts/bai-viet-8/" class="post-card">
+                
+                
+                <div class="post-thumb">
+                    <img src="/sachhutech.jpg" alt="Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng trong Java" loading="lazy">
+                </div>
+                
+                
+                <div class="post-content">
+                    <div class="post-date">22 Dec 2025</div>
+                    <h2 class="post-heading">Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng trong Java</h2>
+                    <p class="post-summary">Hướng dẫn chi tiết cách xử lý ngoại lệ khi lập trình mạng để chương trình không crash khi gặp lỗi kết nối, đọc/ghi dữ …</p>
+                    <span class="read-btn">Read More &rarr;</span>
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+    </main>
+
+</body>
+</html>

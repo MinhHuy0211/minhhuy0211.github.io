@@ -13,7 +13,14 @@
       <link>https://minhhuy0211.github.io/posts/bai-viet-3/</link>
       <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-3/</guid>
-      <description>Viết code JS lồng nhau quá nhiều sẽ tạo ra thảm họa.</description>
+      <description>Hiểu rõ Callback Hell là gì, tại sao nó nguy hiểm và các cách hiện đại để viết code async sạch sẽ, dễ đọc, dễ bảo trì.</description>
+    </item>
+    <item>
+      <title>Bài 3: Callback Hell trong JavaScript và cách né tránh</title>
+      <link>https://minhhuy0211.github.io/posts/bai-viet-3/</link>
+      <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/posts/bai-viet-3/</guid>
+      <description>Hiểu rõ Callback Hell là gì, tại sao nó nguy hiểm và các cách hiện đại để viết code async sạch sẽ, dễ đọc, dễ bảo trì.</description>
     </item>
   </channel>
 </rss>

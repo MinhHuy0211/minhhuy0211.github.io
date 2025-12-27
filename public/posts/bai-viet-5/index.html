@@ -14,119 +14,233 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
 <div class="article-wrapper">
     <article class="main-article">
         <header class="article-header">
-            <p class="article-meta">19 JANUARY 2025 — [JavaScript Network]</p>
+            <p class="article-meta">19 JANUARY 2025 — [JavaScript WebSocket Realtime Network]</p>
             <h1 class="article-title">Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</h1>
         </header>
         
         <div class="article-content">
-            <h3 id="vấn-đề-của-http">Vấn đề của HTTP</h3>
-<p>HTTP hoạt động kiểu &ldquo;Hỏi - Đáp&rdquo;. Client hỏi thì Server mới trả lời. Nếu Client im lặng, Server cũng im. Điều này không làm Chat được vì tin nhắn phải đến ngay lập tức.</p>
-<h3 id="giải-pháp-websocket">Giải pháp: WebSocket</h3>
-<p>WebSocket tạo ra một &ldquo;đường ống&rdquo; kết nối liên tục 2 chiều.</p>
+            <p>Trong các ứng dụng chat thời gian thực (realtime chat), trò chơi online, thông báo đẩy, bảng điều khiển chứng khoán… người dùng cần nhận dữ liệu <strong>ngay lập tức</strong> khi có sự kiện xảy ra ở server mà không phải chờ đợi.</p>
+<p>HTTP truyền thống không đáp ứng tốt yêu cầu này. WebSocket ra đời để giải quyết chính xác vấn đề đó.</p>
+<h3 id="1-vấn-đề-của-http-trong-ứng-dụng-realtime">1. Vấn đề của HTTP trong ứng dụng realtime</h3>
+<p>HTTP hoạt động theo mô hình <strong>request-response</strong> (hỏi - đáp):</p>
 <ul>
-<li>Server có tin nhắn mới -&gt; Bắn ngay về Client.</li>
-<li>Client không cần hỏi (Request) liên tục.</li>
+<li>Client gửi request → Server trả response → kết nối đóng.</li>
+<li>Nếu muốn cập nhật dữ liệu mới, Client phải <strong>hỏi lại</strong> liên tục (gọi là Polling).</li>
 </ul>
-<p>Trong JS, khởi tạo rất dễ:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Kết nối đến Server
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:8080&#39;</span>);
+<p><strong>Các cách &ldquo;faking&rdquo; realtime bằng HTTP:</strong></p>
+<ul>
+<li><strong>Short Polling</strong>: Client hỏi server mỗi 1-2 giây (&ldquo;Có tin nhắn mới không?&rdquo;).</li>
+<li><strong>Long Polling</strong>: Client hỏi → Server giữ kết nối mở đến khi có dữ liệu mới → trả lời → Client hỏi lại ngay.</li>
+</ul>
+<p><strong>Nhược điểm kinh khủng:</strong></p>
+<ul>
+<li>Tốn băng thông cực kỳ (hàng nghìn request vô ích).</li>
+<li>Độ trễ cao (phải chờ hết chu kỳ polling).</li>
+<li>Tải nặng server (hàng triệu kết nối long polling).</li>
+<li>Pin điện thoại mau hết, mạng chậm lag rõ rệt.</li>
+</ul>
+<h3 id="2-websocket--giải-pháp-realtime-thực-thụ">2. WebSocket – Giải pháp realtime thực thụ</h3>
+<p>WebSocket (định nghĩa trong RFC 6455) là giao thức cung cấp <strong>kết nối full-duplex</strong> (2 chiều) liên tục qua một kết nối TCP duy nhất.</p>
+<p><strong>Nguyên lý hoạt động:</strong></p>
+<ol>
+<li>Bắt đầu bằng một HTTP handshake (upgrade request).</li>
+<li>Nếu server đồng ý → kết nối được &ldquo;nâng cấp&rdquo; thành WebSocket.</li>
+<li>Từ đó trở đi, cả Client và Server có thể <strong>gửi dữ liệu bất kỳ lúc nào</strong> mà không cần request mới.</li>
+<li>Kết nối giữ mở cho đến khi một bên đóng.</li>
+</ol>
+<p><strong>Ưu điểm vượt trội:</strong></p>
+<ul>
+<li>Độ trễ cực thấp (tin nhắn đến gần như tức thì).</li>
+<li>Tiết kiệm tài nguyên (chỉ 1 kết nối thay vì hàng nghìn).</li>
+<li>Hỗ trợ truyền cả text và binary (gửi ảnh, file dễ dàng).</li>
+<li>Được hầu hết trình duyệt hiện đại hỗ trợ.</li>
+</ul>
+<p>Các ông lớn dùng WebSocket: Facebook Messenger, Zalo, Discord, Slack, Trello, chứng khoán realtime, game online&hellip;</p>
+<h3 id="3-sử-dụng-websocket-trong-javascript-browser">3. Sử dụng WebSocket trong JavaScript (Browser)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Tạo kết nối WebSocket
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:8080&#39;</span>);  <span style="color:#75715e">// hoặc wss:// cho bảo mật
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Sự kiện khi kết nối thành công
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Kết nối WebSocket thành công!&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hello Server! Tôi là Client đây!&#34;</span>);
+</span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lắng nghe sự kiện khi có tin nhắn đến
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Nhận tin nhắn từ Server
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Có tin nhắn mới: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Tin nhắn từ Server:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Nếu Server gửi binary (ví dụ ảnh)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">Blob</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`&lt;img src=&#34;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34; style=&#34;max-width:300px;&#34;&gt;`</span>;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gửi tin nhắn đi
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hello Server, I am Trọng!&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. Xử lý lỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Lỗi WebSocket:&#34;</span>, <span style="color:#a6e22e">error</span>);
 </span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5. Khi kết nối đóng
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Kết nối đã đóng. Mã:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">code</span>, <span style="color:#e6db74">&#34;Lý do:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">reason</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gửi tin nhắn bất kỳ lúc nào
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendMessage</span>(<span style="color:#a6e22e">msg</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">OPEN</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>  
         </div>
         <div class="article-content">
-            <h3 id="vấn-đề-của-http">Vấn đề của HTTP</h3>
-<p>HTTP hoạt động kiểu &ldquo;Hỏi - Đáp&rdquo;. Client hỏi thì Server mới trả lời. Nếu Client im lặng, Server cũng im. Điều này không làm Chat được vì tin nhắn phải đến ngay lập tức.</p>
-<h3 id="giải-pháp-websocket">Giải pháp: WebSocket</h3>
-<p>WebSocket tạo ra một &ldquo;đường ống&rdquo; kết nối liên tục 2 chiều.</p>
+            <p>Trong các ứng dụng chat thời gian thực (realtime chat), trò chơi online, thông báo đẩy, bảng điều khiển chứng khoán… người dùng cần nhận dữ liệu <strong>ngay lập tức</strong> khi có sự kiện xảy ra ở server mà không phải chờ đợi.</p>
+<p>HTTP truyền thống không đáp ứng tốt yêu cầu này. WebSocket ra đời để giải quyết chính xác vấn đề đó.</p>
+<h3 id="1-vấn-đề-của-http-trong-ứng-dụng-realtime">1. Vấn đề của HTTP trong ứng dụng realtime</h3>
+<p>HTTP hoạt động theo mô hình <strong>request-response</strong> (hỏi - đáp):</p>
 <ul>
-<li>Server có tin nhắn mới -&gt; Bắn ngay về Client.</li>
-<li>Client không cần hỏi (Request) liên tục.</li>
+<li>Client gửi request → Server trả response → kết nối đóng.</li>
+<li>Nếu muốn cập nhật dữ liệu mới, Client phải <strong>hỏi lại</strong> liên tục (gọi là Polling).</li>
 </ul>
-<p>Trong JS, khởi tạo rất dễ:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Kết nối đến Server
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:8080&#39;</span>);
+<p><strong>Các cách &ldquo;faking&rdquo; realtime bằng HTTP:</strong></p>
+<ul>
+<li><strong>Short Polling</strong>: Client hỏi server mỗi 1-2 giây (&ldquo;Có tin nhắn mới không?&rdquo;).</li>
+<li><strong>Long Polling</strong>: Client hỏi → Server giữ kết nối mở đến khi có dữ liệu mới → trả lời → Client hỏi lại ngay.</li>
+</ul>
+<p><strong>Nhược điểm kinh khủng:</strong></p>
+<ul>
+<li>Tốn băng thông cực kỳ (hàng nghìn request vô ích).</li>
+<li>Độ trễ cao (phải chờ hết chu kỳ polling).</li>
+<li>Tải nặng server (hàng triệu kết nối long polling).</li>
+<li>Pin điện thoại mau hết, mạng chậm lag rõ rệt.</li>
+</ul>
+<h3 id="2-websocket--giải-pháp-realtime-thực-thụ">2. WebSocket – Giải pháp realtime thực thụ</h3>
+<p>WebSocket (định nghĩa trong RFC 6455) là giao thức cung cấp <strong>kết nối full-duplex</strong> (2 chiều) liên tục qua một kết nối TCP duy nhất.</p>
+<p><strong>Nguyên lý hoạt động:</strong></p>
+<ol>
+<li>Bắt đầu bằng một HTTP handshake (upgrade request).</li>
+<li>Nếu server đồng ý → kết nối được &ldquo;nâng cấp&rdquo; thành WebSocket.</li>
+<li>Từ đó trở đi, cả Client và Server có thể <strong>gửi dữ liệu bất kỳ lúc nào</strong> mà không cần request mới.</li>
+<li>Kết nối giữ mở cho đến khi một bên đóng.</li>
+</ol>
+<p><strong>Ưu điểm vượt trội:</strong></p>
+<ul>
+<li>Độ trễ cực thấp (tin nhắn đến gần như tức thì).</li>
+<li>Tiết kiệm tài nguyên (chỉ 1 kết nối thay vì hàng nghìn).</li>
+<li>Hỗ trợ truyền cả text và binary (gửi ảnh, file dễ dàng).</li>
+<li>Được hầu hết trình duyệt hiện đại hỗ trợ.</li>
+</ul>
+<p>Các ông lớn dùng WebSocket: Facebook Messenger, Zalo, Discord, Slack, Trello, chứng khoán realtime, game online&hellip;</p>
+<h3 id="3-sử-dụng-websocket-trong-javascript-browser">3. Sử dụng WebSocket trong JavaScript (Browser)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Tạo kết nối WebSocket
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:8080&#39;</span>);  <span style="color:#75715e">// hoặc wss:// cho bảo mật
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Sự kiện khi kết nối thành công
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Kết nối WebSocket thành công!&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hello Server! Tôi là Client đây!&#34;</span>);
+</span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lắng nghe sự kiện khi có tin nhắn đến
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Nhận tin nhắn từ Server
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Có tin nhắn mới: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Tin nhắn từ Server:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Nếu Server gửi binary (ví dụ ảnh)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">Blob</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`&lt;img src=&#34;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34; style=&#34;max-width:300px;&#34;&gt;`</span>;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gửi tin nhắn đi
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hello Server, I am Trọng!&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. Xử lý lỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Lỗi WebSocket:&#34;</span>, <span style="color:#a6e22e">error</span>);
 </span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5. Khi kết nối đóng
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Kết nối đã đóng. Mã:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">code</span>, <span style="color:#e6db74">&#34;Lý do:&#34;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">reason</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gửi tin nhắn bất kỳ lúc nào
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendMessage</span>(<span style="color:#a6e22e">msg</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">OPEN</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
         </div>
 
         <div class="post-navigation">
             
             <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-4/">
-                <span class="nav-label">← BÀI TRƯỚC</span>
+                <span class="nav-label">← QUAY LẠI</span>
                 
             </a>
             
 
             
             <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-6/">
-                <span class="nav-label">BÀI TIẾP THEO →</span>
+                <span class="nav-label">TIẾP THEO →</span>
                 
             </a>
             

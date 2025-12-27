@@ -14,99 +14,265 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
 <div class="article-wrapper">
     <article class="main-article">
         <header class="article-header">
-            <p class="article-meta">16 JANUARY 2025 — [Network Theory]</p>
+            <p class="article-meta">16 JANUARY 2025 — [Java Network Port Socket]</p>
             <h1 class="article-title">Bài 2: Port là gì? Tại sao Server hay dùng cổng 8080?</h1>
         </header>
         
         <div class="article-content">
-            <p>Nếu IP là địa chỉ nhà, thì <strong>Port</strong> chính là số phòng.
-Một máy tính có thể chạy nhiều chương trình mạng (Web, Game, Chat&hellip;), mỗi chương trình phải có một Port riêng.</p>
-<h3 id="các-loại-port-phổ-biến">Các loại Port phổ biến</h3>
+            <p>Trong bài trước, chúng ta đã biết cách lấy IP của máy mình bằng <code>InetAddress</code>.<br>
+Bây giờ, để hai chương trình có thể &ldquo;nói chuyện&rdquo; với nhau qua mạng, chỉ có IP là <strong>chưa đủ</strong>. Chúng ta cần thêm một thứ nữa: <strong>Port</strong> (cổng).</p>
+<h3 id="port-là-gì-tại-sao-lại-cần-nó">Port là gì? Tại sao lại cần nó?</h3>
+<p>Hãy tưởng tượng IP là <strong>địa chỉ nhà</strong>, còn Port là <strong>số phòng</strong> trong ngôi nhà đó.</p>
 <ul>
-<li><strong>Port 80:</strong> Dành cho Web (HTTP).</li>
-<li><strong>Port 443:</strong> Dành cho Web bảo mật (HTTPS).</li>
-<li><strong>Port 3306:</strong> Dành cho MySQL Database.</li>
+<li>Một máy tính (một IP) có thể chạy đồng thời rất nhiều dịch vụ mạng: trình duyệt web, game online, database, chat app, server phát triển…</li>
+<li>Mỗi dịch vụ sẽ <strong>lắng nghe</strong> trên một Port riêng biệt để nhận dữ liệu.</li>
+<li>Khi gửi dữ liệu, bạn phải chỉ rõ: &ldquo;Gửi đến IP nào, Port nào&rdquo; → hệ điều hành mới biết đưa gói tin cho đúng chương trình.</li>
 </ul>
-<h3 id="lỗi-thường-gặp-address-already-in-use">Lỗi thường gặp: &ldquo;Address already in use&rdquo;</h3>
-<p>Lỗi này xảy ra khi bạn cố mở Server ở một Port đang bị thằng khác chiếm dụng.
-=&gt; Cách sửa: Đổi sang số khác, ví dụ đổi từ 8080 sang 9999.</p>
+<p><strong>Cấu trúc đầy đủ của một kết nối mạng</strong>:<br>
+<code>IP nguồn : Port nguồn  →  IP đích : Port đích</code></p>
+<p>Ví dụ: Khi bạn truy cập <a href="https://google.com">https://google.com</a></p>
+<ul>
+<li>Máy bạn gửi yêu cầu từ IP của bạn + một Port ngẫu nhiên (ví dụ 54321)</li>
+<li>Đến IP của Google + Port 443 (HTTPS)</li>
+</ul>
+<h3 id="phân-loại-port-theo-chuẩn-iana">Phân loại Port (theo chuẩn IANA)</h3>
+<p>Port được chia thành 3 nhóm chính (tổng cộng 0 – 65535):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Nhóm</th>
+          <th>Dải Port</th>
+          <th>Tên gọi</th>
+          <th>Đặc điểm</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Well-known Ports</td>
+          <td>0 – 1023</td>
+          <td>Port hệ thống</td>
+          <td>Dành cho các dịch vụ chuẩn, cần quyền admin để bind (trên Linux/Windows)</td>
+      </tr>
+      <tr>
+          <td>Registered Ports</td>
+          <td>1024 – 49151</td>
+          <td>Port đã đăng ký</td>
+          <td>Các hãng phần mềm đăng ký dùng (MySQL: 3306, PostgreSQL: 5432&hellip;)</td>
+      </tr>
+      <tr>
+          <td>Dynamic/Private</td>
+          <td>49152 – 65535</td>
+          <td>Port động/tự do</td>
+          <td>Dùng cho client kết nối tạm thời hoặc server dev tự do chọn</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Một số Port phổ biến cần nhớ:</strong></p>
+<ul>
+<li>80 → HTTP (web không mã hóa)</li>
+<li>443 → HTTPS (web có mã hóa)</li>
+<li>21 → FTP</li>
+<li>22 → SSH</li>
+<li>25 → SMTP (gửi mail)</li>
+<li>3306 → MySQL</li>
+<li>5432 → PostgreSQL</li>
+<li>27017 → MongoDB</li>
+</ul>
+<h3 id="tại-sao-developer-hay-dùng-port-8080-hoặc-3000-5000">Tại sao developer hay dùng Port 8080 (hoặc 3000, 5000&hellip;)?</h3>
+<ul>
+<li>Port dưới 1024 thường yêu cầu quyền <strong>root/admin</strong> → không tiện khi chạy thử nghiệm.</li>
+<li>Port 8080 là &ldquo;người anh em&rdquo; của Port 80 (HTTP), được IBM chọn làm port mặc định cho các proxy và server dev từ rất lâu → dần trở thành <strong>thói quen toàn ngành</strong>.</li>
+<li>Tương tự: Tomcat, Jetty, Spring Boot, GlassFish&hellip; đều mặc định 8080.</li>
+<li>Các port khác phổ biến trong dev:
+<ul>
+<li>3000 → Node.js, React</li>
+<li>5000 → Python Flask</li>
+<li>8000 → Django</li>
+<li>9000 → PHP built-in server</li>
+</ul>
+</li>
+</ul>
+<h3 id="lỗi-kinh-điển-address-already-in-use-hoặc-port-already-in-use">Lỗi kinh điển: &ldquo;Address already in use&rdquo; hoặc &ldquo;Port already in use&rdquo;</h3>
+<p>Khi bạn chạy server và thấy lỗi này, nghĩa là Port bạn chọn <strong>đang bị chiếm</strong> bởi một chương trình khác.</p>
+<p><strong>Nguyên nhân thường gặp:</strong></p>
+<ol>
+<li>Bạn đã chạy một instance server trước đó và chưa tắt.</li>
+<li>Một phần mềm khác đang dùng port đó (ví dụ: Skype, Apache, Nginx&hellip; từng dùng 80/443).</li>
+<li>Trên Mac/Windows: có dịch vụ hệ thống chiếm port.</li>
+</ol>
+<p><strong>Cách khắc phục nhanh:</strong></p>
+<ul>
+<li>Đổi sang port khác: 8081, 9999, 3001&hellip;</li>
+<li>Tắt chương trình đang chiếm port.</li>
+<li>Trên Linux/Mac: Tìm và kill process
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsof -i :8080          <span style="color:#75715e"># Xem ai đang dùng port 8080</span>
+</span></span><span style="display:flex;"><span>kill -9 &lt;PID&gt;          <span style="color:#75715e"># Kill process đó</span>
+</span></span></code></pre></div></li>
+</ul>
   
         </div>
         <div class="article-content">
-            <p>Nếu IP là địa chỉ nhà, thì <strong>Port</strong> chính là số phòng.
-Một máy tính có thể chạy nhiều chương trình mạng (Web, Game, Chat&hellip;), mỗi chương trình phải có một Port riêng.</p>
-<h3 id="các-loại-port-phổ-biến">Các loại Port phổ biến</h3>
+            <p>Trong bài trước, chúng ta đã biết cách lấy IP của máy mình bằng <code>InetAddress</code>.<br>
+Bây giờ, để hai chương trình có thể &ldquo;nói chuyện&rdquo; với nhau qua mạng, chỉ có IP là <strong>chưa đủ</strong>. Chúng ta cần thêm một thứ nữa: <strong>Port</strong> (cổng).</p>
+<h3 id="port-là-gì-tại-sao-lại-cần-nó">Port là gì? Tại sao lại cần nó?</h3>
+<p>Hãy tưởng tượng IP là <strong>địa chỉ nhà</strong>, còn Port là <strong>số phòng</strong> trong ngôi nhà đó.</p>
 <ul>
-<li><strong>Port 80:</strong> Dành cho Web (HTTP).</li>
-<li><strong>Port 443:</strong> Dành cho Web bảo mật (HTTPS).</li>
-<li><strong>Port 3306:</strong> Dành cho MySQL Database.</li>
+<li>Một máy tính (một IP) có thể chạy đồng thời rất nhiều dịch vụ mạng: trình duyệt web, game online, database, chat app, server phát triển…</li>
+<li>Mỗi dịch vụ sẽ <strong>lắng nghe</strong> trên một Port riêng biệt để nhận dữ liệu.</li>
+<li>Khi gửi dữ liệu, bạn phải chỉ rõ: &ldquo;Gửi đến IP nào, Port nào&rdquo; → hệ điều hành mới biết đưa gói tin cho đúng chương trình.</li>
 </ul>
-<h3 id="lỗi-thường-gặp-address-already-in-use">Lỗi thường gặp: &ldquo;Address already in use&rdquo;</h3>
-<p>Lỗi này xảy ra khi bạn cố mở Server ở một Port đang bị thằng khác chiếm dụng.
-=&gt; Cách sửa: Đổi sang số khác, ví dụ đổi từ 8080 sang 9999.</p>
+<p><strong>Cấu trúc đầy đủ của một kết nối mạng</strong>:<br>
+<code>IP nguồn : Port nguồn  →  IP đích : Port đích</code></p>
+<p>Ví dụ: Khi bạn truy cập <a href="https://google.com">https://google.com</a></p>
+<ul>
+<li>Máy bạn gửi yêu cầu từ IP của bạn + một Port ngẫu nhiên (ví dụ 54321)</li>
+<li>Đến IP của Google + Port 443 (HTTPS)</li>
+</ul>
+<h3 id="phân-loại-port-theo-chuẩn-iana">Phân loại Port (theo chuẩn IANA)</h3>
+<p>Port được chia thành 3 nhóm chính (tổng cộng 0 – 65535):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Nhóm</th>
+          <th>Dải Port</th>
+          <th>Tên gọi</th>
+          <th>Đặc điểm</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Well-known Ports</td>
+          <td>0 – 1023</td>
+          <td>Port hệ thống</td>
+          <td>Dành cho các dịch vụ chuẩn, cần quyền admin để bind (trên Linux/Windows)</td>
+      </tr>
+      <tr>
+          <td>Registered Ports</td>
+          <td>1024 – 49151</td>
+          <td>Port đã đăng ký</td>
+          <td>Các hãng phần mềm đăng ký dùng (MySQL: 3306, PostgreSQL: 5432&hellip;)</td>
+      </tr>
+      <tr>
+          <td>Dynamic/Private</td>
+          <td>49152 – 65535</td>
+          <td>Port động/tự do</td>
+          <td>Dùng cho client kết nối tạm thời hoặc server dev tự do chọn</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Một số Port phổ biến cần nhớ:</strong></p>
+<ul>
+<li>80 → HTTP (web không mã hóa)</li>
+<li>443 → HTTPS (web có mã hóa)</li>
+<li>21 → FTP</li>
+<li>22 → SSH</li>
+<li>25 → SMTP (gửi mail)</li>
+<li>3306 → MySQL</li>
+<li>5432 → PostgreSQL</li>
+<li>27017 → MongoDB</li>
+</ul>
+<h3 id="tại-sao-developer-hay-dùng-port-8080-hoặc-3000-5000">Tại sao developer hay dùng Port 8080 (hoặc 3000, 5000&hellip;)?</h3>
+<ul>
+<li>Port dưới 1024 thường yêu cầu quyền <strong>root/admin</strong> → không tiện khi chạy thử nghiệm.</li>
+<li>Port 8080 là &ldquo;người anh em&rdquo; của Port 80 (HTTP), được IBM chọn làm port mặc định cho các proxy và server dev từ rất lâu → dần trở thành <strong>thói quen toàn ngành</strong>.</li>
+<li>Tương tự: Tomcat, Jetty, Spring Boot, GlassFish&hellip; đều mặc định 8080.</li>
+<li>Các port khác phổ biến trong dev:
+<ul>
+<li>3000 → Node.js, React</li>
+<li>5000 → Python Flask</li>
+<li>8000 → Django</li>
+<li>9000 → PHP built-in server</li>
+</ul>
+</li>
+</ul>
+<h3 id="lỗi-kinh-điển-address-already-in-use-hoặc-port-already-in-use">Lỗi kinh điển: &ldquo;Address already in use&rdquo; hoặc &ldquo;Port already in use&rdquo;</h3>
+<p>Khi bạn chạy server và thấy lỗi này, nghĩa là Port bạn chọn <strong>đang bị chiếm</strong> bởi một chương trình khác.</p>
+<p><strong>Nguyên nhân thường gặp:</strong></p>
+<ol>
+<li>Bạn đã chạy một instance server trước đó và chưa tắt.</li>
+<li>Một phần mềm khác đang dùng port đó (ví dụ: Skype, Apache, Nginx&hellip; từng dùng 80/443).</li>
+<li>Trên Mac/Windows: có dịch vụ hệ thống chiếm port.</li>
+</ol>
+<p><strong>Cách khắc phục nhanh:</strong></p>
+<ul>
+<li>Đổi sang port khác: 8081, 9999, 3001&hellip;</li>
+<li>Tắt chương trình đang chiếm port.</li>
+<li>Trên Linux/Mac: Tìm và kill process
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsof -i :8080          <span style="color:#75715e"># Xem ai đang dùng port 8080</span>
+</span></span><span style="display:flex;"><span>kill -9 &lt;PID&gt;          <span style="color:#75715e"># Kill process đó</span>
+</span></span></code></pre></div></li>
+</ul>
 
         </div>
 
         <div class="post-navigation">
             
             <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-1/">
-                <span class="nav-label">← BÀI TRƯỚC</span>
+                <span class="nav-label">← QUAY LẠI</span>
                 
             </a>
             
 
             
             <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-3/">
-                <span class="nav-label">BÀI TIẾP THEO →</span>
+                <span class="nav-label">TIẾP THEO →</span>
                 
             </a>
             

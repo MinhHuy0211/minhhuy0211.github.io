@@ -1,17 +1,184 @@
 {{ define "main" }}
+
+<style>
+    /* 1. Thiết lập cơ bản */
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-color: #555555;
+        --text-light: #999999;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    /* 2. Layout Wrapper */
+    .blog-wrapper {
+        background-color: var(--bg-color);
+        padding: 4rem 1rem;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .blog-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 3rem;
+        letter-spacing: -1px;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* 3. Grid System (Lưới bài viết) */
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    /* 4. Post Card Styles */
+    .post-card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Giúp các card cao bằng nhau */
+    }
+
+    .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    /* Thumbnail Image */
+    .post-thumb {
+        width: 100%;
+        height: 220px; /* Chiều cao cố định cho ảnh */
+        overflow: hidden;
+        position: relative;
+    }
+
+    .post-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Đảm bảo ảnh không bị méo */
+        transition: transform 0.5s ease;
+    }
+
+    .post-card:hover .post-thumb img {
+        transform: scale(1.05); /* Zoom nhẹ khi hover */
+    }
+
+    /* Post Content */
+    .post-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Đẩy nội dung lấp đầy khoảng trống */
+    }
+
+    .post-date {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .post-heading {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0 0 1rem 0;
+        line-height: 1.4;
+    }
+
+    .post-summary {
+        font-size: 0.95rem;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Giới hạn 3 dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Read More Button */
+    .read-btn {
+        margin-top: auto; /* Đẩy nút xuống dưới cùng */
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.2s;
+    }
+
+    .post-card:hover .read-btn {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+
+    /* 5. Responsive Mobile */
+    @media (max-width: 768px) {
+        .blog-wrapper {
+            padding: 2rem 1rem;
+        }
+        
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-grid {
+            grid-template-columns: 1fr; /* 1 cột trên mobile */
+            gap: 1.5rem;
+        }
+    }
+</style>
+
 <div class="blog-wrapper">
     <div class="blog-container">
-        <h1 class="blog-title">LATEST ARTICLES.</h1>
+        <h1 class="blog-title">Latest Articles</h1>
+        
         <div class="post-grid">
             {{ range .Pages }}
             <a href="{{ .Permalink }}" class="post-card">
-                <div class="post-date">{{ .Date.Format "02 Jan 2006" }}</div>
-                <h2 class="post-heading">{{ .Title }}</h2>
-                <p class="post-summary">{{ .Summary | truncate 120 }}</p>
-                <span class="read-btn">READ MORE →</span>
+                
+                {{ if .Params.thumbnail }}
+                <div class="post-thumb">
+                    <img src="{{ .Params.thumbnail | relURL }}" alt="{{ .Title }}" loading="lazy">
+                </div>
+                {{ end }}
+                
+                <div class="post-content">
+                    <div class="post-date">{{ .Date.Format "02 Jan 2006" }}</div>
+                    <h2 class="post-heading">{{ .Title }}</h2>
+                    <p class="post-summary">{{ .Summary | truncate 120 }}</p>
+                    <span class="read-btn">Read More &rarr;</span>
+                </div>
             </a>
             {{ end }}
         </div>
     </div>
 </div>
+
 {{ end }}

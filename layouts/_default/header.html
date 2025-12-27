@@ -25,6 +25,12 @@
                    BLOG
                 </a>
             </li>
+<li>
+    <a href="{{ "certificates/" | absURL }}"
+       class="{{ if in .RelPermalink "/certificates/" }}active{{ end }}">
+       CHỨNG CHỈ
+    </a>
+</li>
 
             <li>
                 <a href="{{ "contact/" | absURL }}"
@@ -32,6 +38,7 @@
                    LIÊN HỆ
                 </a>
             </li>
+            
         </ul>
     </nav>
 </header>

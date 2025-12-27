@@ -6,28 +6,42 @@
     <description>Recent content in Network on Nguyễn Trịnh Minh Huy</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>vi-vn</language>
-    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://minhhuy0211.github.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bài 1: Làm sao biết máy mình đang dùng IP gì trong Java?</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-1/</link>
       <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-1/</guid>
-      <description>Sử dụng class InetAddress để định danh máy tính.</description>
+      <description>Hướng dẫn chi tiết cách sử dụng class InetAddress để lấy địa chỉ IP của máy local, xử lý trường hợp nhiều card mạng và các lưu ý thực tế khi lập trình mạng.</description>
     </item>
     <item>
       <title>Bài 2: Port là gì? Tại sao Server hay dùng cổng 8080?</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-2/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-2/</guid>
-      <description>Hiểu về khái niệm Port (Cổng) để tránh xung đột khi chạy phần mềm.</description>
+      <description>Giải thích rõ ràng khái niệm Port trong mạng máy tính, phân loại port, lý do dùng 8080 cho server dev và cách tránh xung đột port thực tế.</description>
     </item>
     <item>
       <title>Bài 5: WebSocket - Công nghệ sau các ứng dụng Chat Realtime</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-5/</link>
       <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-5/</guid>
-      <description>Tại sao Facebook, Zalo lại dùng WebSocket thay vì HTTP thông thường?</description>
+      <description>Tại sao các ứng dụng chat như Facebook, Zalo, Discord lại dùng WebSocket thay vì HTTP polling? Giải thích cơ chế hoạt động và cách dùng trong JavaScript.</description>
+    </item>
+    <item>
+      <title>Bài 6: Phân biệt Blocking IO và Non-Blocking IO</title>
+      <link>https://minhhuy0211.github.io/posts/bai-viet-6/</link>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/posts/bai-viet-6/</guid>
+      <description>Phân tích sâu sự khác biệt giữa Blocking IO và Non-Blocking IO, minh họa bằng code thực tế, so sánh hiệu suất và hướng dẫn khi nào nên dùng cái nào trong dự án Java.</description>
+    </item>
+    <item>
+      <title>Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng trong Java</title>
+      <link>https://minhhuy0211.github.io/posts/bai-viet-8/</link>
+      <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/posts/bai-viet-8/</guid>
+      <description>Hướng dẫn chi tiết cách xử lý ngoại lệ khi lập trình mạng để chương trình không crash khi gặp lỗi kết nối, đọc/ghi dữ liệu hay server sập.</description>
     </item>
   </channel>
 </rss>

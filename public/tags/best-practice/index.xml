@@ -9,11 +9,11 @@
     <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://minhhuy0211.github.io/tags/best-practice/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng</title>
+      <title>Bài 8: Xử lý ngoại lệ (Exception) khi lập trình mạng trong Java</title>
       <link>https://minhhuy0211.github.io/posts/bai-viet-8/</link>
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://minhhuy0211.github.io/posts/bai-viet-8/</guid>
-      <description>Mạng rớt, Server sập&amp;hellip; làm sao để chương trình không bị Crash?</description>
+      <description>Hướng dẫn chi tiết cách xử lý ngoại lệ khi lập trình mạng để chương trình không crash khi gặp lỗi kết nối, đọc/ghi dữ liệu hay server sập.</description>
     </item>
   </channel>
 </rss>

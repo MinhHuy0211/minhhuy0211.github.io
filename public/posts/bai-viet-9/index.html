@@ -14,114 +14,92 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
 <div class="article-wrapper">
     <article class="main-article">
         <header class="article-header">
-            <p class="article-meta">23 JANUARY 2025 — [Java Thread Server]</p>
+            <p class="article-meta">23 JANUARY 2025 — [Java Multithreading Thread Server Concurrency]</p>
             <h1 class="article-title">Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc</h1>
         </header>
         
         <div class="article-content">
-            <p>Nếu bạn chạy code Server cơ bản, khi Client A kết nối, Server sẽ bận nói chuyện với A. Lúc này Client B kết nối tới sẽ bị &ldquo;quay đều&rdquo; (treo) cho đến khi A thoát ra.
-=&gt; Để khắc phục, ta phải dùng <strong>Thread</strong> (Luồng).</p>
-<h3 id="mô-hình-server-đa-luồng">Mô hình Server Đa luồng</h3>
-<p>Tưởng tượng Server là một ông chủ quán (Main Thread):</p>
-<ol>
-<li>Ông chủ đứng ở cửa (<code>socket.accept()</code>).</li>
-<li>Khách A tới =&gt; Ông chủ thuê nhân viên 1 ra tiếp A.</li>
-<li>Ông chủ quay lại cửa đứng chờ tiếp.</li>
-<li>Khách B tới =&gt; Ông chủ thuê nhân viên 2 ra tiếp B.</li>
-</ol>
-<h3 id="code-minh-họa-java">Code minh họa (Java)</h3>
+            <p>Trong các bài trước, chúng ta đã viết server socket cơ bản. Nhưng nếu chạy thử với nhiều client, bạn sẽ thấy vấn đề lớn:<br>
+<strong>Khi một client đang kết nối và trao đổi dữ liệu, các client khác phải chờ đến lượt – thậm chí bị treo hoàn toàn!</strong></p>
+<p>Đây chính là hạn chế của <strong>server đơn luồng (single-threaded)</strong>. Bài hôm nay sẽ giúp bạn biến server thành <strong>đa luồng</strong>, phục vụ hàng trăm client cùng lúc một cách mượt mà.</p>
+<h3 id="1-tại-sao-server-đơn-luồng-lại-chỉ-tiếp-được-1-khách">1. Tại sao server đơn luồng lại &ldquo;chỉ tiếp được 1 khách&rdquo;?</h3>
+<p>Hãy xem lại code server cơ bản:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1. Chờ khách tới (Main Thread bị block ở đây)</span>
-</span></span><span style="display:flex;"><span>    Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Có khách! Tạo một luồng riêng (Nhân viên) để xử lý</span>
-</span></span><span style="display:flex;"><span>    Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(<span style="color:#66d9ef">new</span> Runnable() {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
-</span></span><span style="display:flex;"><span>            xuLyCongViec(clientSocket); <span style="color:#75715e">// Nhân viên làm việc ở đây</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Đẩy nhân viên ra làm việc, ông chủ quay lại vòng lặp chờ khách mới</span>
-</span></span><span style="display:flex;"><span>    t.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    Socket client <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();  <span style="color:#75715e">// Main thread BLOCK ở đây chờ client</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Xử lý toàn bộ giao tiếp với client này (đọc + ghi + logic)</span>
+</span></span><span style="display:flex;"><span>    handleClient(client);  <span style="color:#75715e">// Trong lúc này, không client nào khác kết nối được!</span>
+</span></span><span style="display:flex;"><span>    client.<span style="color:#a6e22e">close</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>  
         </div>
         <div class="article-content">
-            <p>Nếu bạn chạy code Server cơ bản, khi Client A kết nối, Server sẽ bận nói chuyện với A. Lúc này Client B kết nối tới sẽ bị &ldquo;quay đều&rdquo; (treo) cho đến khi A thoát ra.
-=&gt; Để khắc phục, ta phải dùng <strong>Thread</strong> (Luồng).</p>
-<h3 id="mô-hình-server-đa-luồng">Mô hình Server Đa luồng</h3>
-<p>Tưởng tượng Server là một ông chủ quán (Main Thread):</p>
-<ol>
-<li>Ông chủ đứng ở cửa (<code>socket.accept()</code>).</li>
-<li>Khách A tới =&gt; Ông chủ thuê nhân viên 1 ra tiếp A.</li>
-<li>Ông chủ quay lại cửa đứng chờ tiếp.</li>
-<li>Khách B tới =&gt; Ông chủ thuê nhân viên 2 ra tiếp B.</li>
-</ol>
-<h3 id="code-minh-họa-java">Code minh họa (Java)</h3>
+            <p>Trong các bài trước, chúng ta đã viết server socket cơ bản. Nhưng nếu chạy thử với nhiều client, bạn sẽ thấy vấn đề lớn:<br>
+<strong>Khi một client đang kết nối và trao đổi dữ liệu, các client khác phải chờ đến lượt – thậm chí bị treo hoàn toàn!</strong></p>
+<p>Đây chính là hạn chế của <strong>server đơn luồng (single-threaded)</strong>. Bài hôm nay sẽ giúp bạn biến server thành <strong>đa luồng</strong>, phục vụ hàng trăm client cùng lúc một cách mượt mà.</p>
+<h3 id="1-tại-sao-server-đơn-luồng-lại-chỉ-tiếp-được-1-khách">1. Tại sao server đơn luồng lại &ldquo;chỉ tiếp được 1 khách&rdquo;?</h3>
+<p>Hãy xem lại code server cơ bản:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1. Chờ khách tới (Main Thread bị block ở đây)</span>
-</span></span><span style="display:flex;"><span>    Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Có khách! Tạo một luồng riêng (Nhân viên) để xử lý</span>
-</span></span><span style="display:flex;"><span>    Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(<span style="color:#66d9ef">new</span> Runnable() {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
-</span></span><span style="display:flex;"><span>            xuLyCongViec(clientSocket); <span style="color:#75715e">// Nhân viên làm việc ở đây</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Đẩy nhân viên ra làm việc, ông chủ quay lại vòng lặp chờ khách mới</span>
-</span></span><span style="display:flex;"><span>    t.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    Socket client <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();  <span style="color:#75715e">// Main thread BLOCK ở đây chờ client</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Xử lý toàn bộ giao tiếp với client này (đọc + ghi + logic)</span>
+</span></span><span style="display:flex;"><span>    handleClient(client);  <span style="color:#75715e">// Trong lúc này, không client nào khác kết nối được!</span>
+</span></span><span style="display:flex;"><span>    client.<span style="color:#a6e22e">close</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
         </div>
@@ -129,14 +107,14 @@
         <div class="post-navigation">
             
             <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-8/">
-                <span class="nav-label">← BÀI TRƯỚC</span>
+                <span class="nav-label">← QUAY LẠI</span>
                 
             </a>
             
 
             
             <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-10/">
-                <span class="nav-label">BÀI TIẾP THEO →</span>
+                <span class="nav-label">TIẾP THEO →</span>
                 
             </a>
             

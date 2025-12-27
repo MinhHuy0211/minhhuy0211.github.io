@@ -16,49 +16,57 @@
 <body>
 
     <!-- HEADER -->
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            <!-- LOGO / NAME -->
-            <div class="luxury-logo">
-                <a href="{{ "" | absURL }}">
-                    NGUYỄN TRỊNH MINH HUY
+        <!-- LOGO / NAME -->
+        <div class="luxury-logo">
+            <a href="{{ "/" | absURL }}">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        <!-- MENU -->
+        <ul class="luxury-menu">
+            <li>
+                <a href="{{ "/" | absURL }}"
+                   class="{{ if .IsHome }}active{{ end }}">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
 
-            <!-- MENU -->
-            <ul class="luxury-menu">
-                <li>
-                    <a href="{{ "" | absURL }}"
-                       class="{{ if .IsHome }}active{{ end }}">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="{{ "about/" | absURL }}"
+                   class="{{ if in .RelPermalink "/about/" }}active{{ end }}">
+                    GIỚI THIỆU
+                </a>
+            </li>
 
-                <li>
-                    <a href="{{ "about" | absURL }}"
-                       class="{{ if in .RelPermalink "about" }}active{{ end }}">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="{{ "posts/" | absURL }}"
+                   class="{{ if (eq .Section "posts") }}active{{ end }}">
+                    BLOG
+                </a>
+            </li>
 
-                <li>
-                    <a href="{{ "posts" | absURL }}"
-                       class="{{ if (or (eq .Section "posts") (in .RelPermalink "posts")) }}active{{ end }}">
-                        BLOG
-                    </a>
-                </li>
+            <!-- ✅ CHỨNG CHỈ -->
+            <li>
+                <a href="{{ "certificates/" | absURL }}"
+                   class="{{ if in .RelPermalink "/certificates/" }}active{{ end }}">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="{{ "contact" | absURL }}"
-                       class="{{ if in .RelPermalink "contact" }}active{{ end }}">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
+            <li>
+                <a href="{{ "contact/" | absURL }}"
+                   class="{{ if in .RelPermalink "/contact/" }}active{{ end }}">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-        </nav>
-    </header>
 
     <!-- MAIN CONTENT -->
     <main>

@@ -2,14 +2,21 @@
 <div class="contact-wrapper">
     <div class="contact-split-layout">
 
-        <!-- TEXT & FORM SIDE -->
+        <!-- IMAGE SIDE (BÊN TRÁI) -->
+        <div class="contact-image-side">
+            <div class="image-frame image-reveal">
+                <img src="{{ "laitick.jpg" | absURL }}" alt="Nguyễn Trịnh Minh Huy">
+            </div>
+        </div>
+
+        <!-- TEXT & FORM SIDE (BÊN PHẢI) -->
         <div class="contact-text-side">
             <div class="contact-content">
                 <p class="contact-label reveal">GET IN TOUCH</p>
 
                 <h1 class="contact-title reveal">
-                    <span class="title-line">CONTACT</span>
-                    <span class="title-line outline">ME.</span>
+                    <span class="title-line">LET'S</span>
+                    <span class="title-line">CONNECT.</span>
                 </h1>
 
                 <div class="contact-info reveal">
@@ -17,21 +24,24 @@
                     <p class="info-item">📞 +84 326 865 170</p>
                 </div>
 
+                <!-- SOCIAL LINKS -->
+                <div class="social-links reveal">
+                    <a href="https://www.facebook.com/yTee.minhhuy2004" target="_blank" class="social-link facebook-link" aria-label="Facebook profile">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.099 4.388 23.094 10.125 24V15.563H7.078V12.073H10.125V9.507C10.125 6.388 11.917 4.687 14.769 4.687C16.129 4.687 17.543 4.922 17.543 4.922V7.875H15.932C14.343 7.875 13.875 8.801 13.875 9.75V12.073H17.406L16.855 15.563H13.875V24C19.612 23.094 24 18.099 24 12.073Z"/>
+                        </svg>
+                    </a>
+                    <!-- Thêm mạng xã hội khác nếu cần -->
+                </div>
+
                 <div class="contact-form-wrapper reveal">
                     <form action="https://formspree.io/f/xvzpylgw" method="POST" class="contact-form">
                         <input type="text" name="name" placeholder="TÊN CỦA BẠN *" required>
                         <input type="email" name="email" placeholder="EMAIL CỦA BẠN *" required>
-                        <textarea name="message" rows="5" placeholder="NỘI DUNG TIN NHẮN *" required></textarea>
-                        <button type="submit" class="submit-btn">GỬI TIN NHẮN</button>
+                        <textarea name="message" rows="5" placeholder="NỘI DUNG TIN NHẶN *" required></textarea>
+                        <button type="submit" class="submit-btn">GỬI TIN NHẶN</button>
                     </form>
                 </div>
-            </div>
-        </div>
-
-        <!-- IMAGE SIDE -->
-        <div class="contact-image-side">
-            <div class="image-frame image-reveal">
-                <img src="{{ "anhdaidien.jpg" | absURL }}" alt="Nguyễn Trịnh Minh Huy">
             </div>
         </div>
 
@@ -39,8 +49,8 @@
 </div>
 
 <style>
-/* FONTS - Sang trọng & hiện đại */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+/* FONTS - Sạch sẽ, hiện đại */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;800&display=swap');
 
 /* HIDE THEME ELEMENTS */
 footer, .footer, .nav, .header, .logo-switches, #top-link {
@@ -49,11 +59,11 @@ footer, .footer, .nav, .header, .logo-switches, #top-link {
 html, body {
     margin: 0;
     padding: 0;
-    background: #fff;
+    background: #ffffff;
     overflow: hidden;
     height: 100%;
     font-family: 'Inter', sans-serif;
-    color: #1a1a1a;
+    color: #1e293b;
 }
 
 /* WRAPPER */
@@ -62,21 +72,31 @@ html, body {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
-/* SPLIT LAYOUT - Tinh tế 55/45 */
+/* SPLIT LAYOUT */
 .contact-split-layout {
     display: flex;
     height: 100%;
 }
 
-.contact-text-side {
-    flex: 0 0 55%;
-    background: #ffffff;
+.contact-image-side {
+    flex: 0 0 50%;
+    background: #eff6ff;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 8vw;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.contact-text-side {
+    flex: 0 0 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 8vw;
 }
 
 .contact-content {
@@ -84,22 +104,15 @@ html, body {
     width: 100%;
 }
 
-.contact-image-side {
-    flex: 0 0 45%;
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
+/* IMAGE STYLING */
 .image-frame {
-    width: 78%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 520px;
     aspect-ratio: 4/5;
     overflow: hidden;
-    box-shadow: 30px 30px 90px rgba(0,0,0,0.12);
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+    transition: transform 0.8s ease;
 }
 
 .image-frame:hover {
@@ -120,21 +133,22 @@ html, body {
 
 /* TYPOGRAPHY */
 .contact-label {
-    font-size: 12px;
-    letter-spacing: 7px;
+    font-size: 13px;
+    letter-spacing: 6px;
     font-weight: 600;
-    color: #aaaaaa;
+    color: #64748b;
     text-transform: uppercase;
     margin-bottom: 40px;
 }
 
 .contact-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 110px;
-    font-weight: 900;
-    line-height: 0.92;
+    font-family: 'Manrope', sans-serif;
+    font-size: 100px;
+    font-weight: 800;
+    line-height: 0.94;
     letter-spacing: -3px;
     margin: 0 0 60px 0;
+    color: #1e293b;
 }
 
 .contact-title .title-line {
@@ -142,90 +156,130 @@ html, body {
     overflow: hidden;
 }
 
-.contact-title .outline {
-    color: transparent;
-    -webkit-text-stroke: 2.5px #1a1a1a;
-}
-
 .contact-info {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .info-item {
     font-size: 18px;
     font-weight: 500;
-    color: #333;
-    margin: 16px 0;
-    opacity: 0.9;
+    color: #475569;
+    margin: 18px 0;
 }
 
-/* FORM - Luxury minimalist */
+/* SOCIAL LINKS */
+.social-links {
+    margin-bottom: 60px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: #2563eb;
+    color: #ffffff;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* FORM */
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    max-width: 520px;
+    width: 100%;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
     border: none;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid #cbd5e1;
     background: transparent;
-    padding: 12px 0;
+    padding: 14px 0;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
-    color: #1a1a1a;
+    color: #1e293b;
     outline: none;
-    transition: border-color 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: #999;
+    color: #94a3b8;
     font-weight: 500;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-bottom-color: #1a1a1a;
+    border-bottom-color: #2563eb;
 }
 
 .contact-form textarea {
     resize: none;
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.contact-form textarea:focus {
+    border-color: #2563eb;
 }
 
 .submit-btn {
     align-self: flex-start;
-    background: transparent;
-    color: #1a1a1a;
-    border: 2px solid #1a1a1a;
-    padding: 16px 44px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 16px 48px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
+    border-radius: 12px;
     margin-top: 20px;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
 }
 
 .submit-btn:hover {
-    background: #1a1a1a;
-    color: #fff;
+    background: #1d4ed8;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
 }
 
-/* ANIMATIONS */
+/* ANIMATIONS - Nhẹ nhàng */
 .reveal {
     opacity: 0;
-    transform: translateY(60px);
-    animation: revealUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(40px);
+    animation: revealUp 1.1s ease forwards;
 }
 
 .reveal:nth-of-type(1) { animation-delay: 0.3s; }
 .reveal:nth-of-type(2) { animation-delay: 0.6s; }
 .reveal:nth-of-type(3) { animation-delay: 0.9s; }
-.reveal:nth-of-type(4) { animation-delay: 1.2s; }
+.reveal:nth-of-type(4) { animation-delay: 1.1s; }
+.reveal:nth-of-type(5) { animation-delay: 1.3s; }
 
 @keyframes revealUp {
     to {
@@ -234,24 +288,11 @@ html, body {
     }
 }
 
-.contact-title .title-line span {
-    display: block;
-    transform: translateY(110%);
-    animation: titleSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.contact-title .title-line:nth-child(1) span { animation-delay: 0.5s; }
-.contact-title .title-line:nth-child(2) span { animation-delay: 0.8s; }
-
-@keyframes titleSlide {
-    to { transform: translateY(0); }
-}
-
 .image-reveal {
     opacity: 0;
-    transform: scale(0.94);
-    animation: imageReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1s;
+    transform: scale(0.96);
+    animation: imageReveal 1.4s ease forwards;
+    animation-delay: 0.7s;
 }
 
 @keyframes imageReveal {
@@ -264,7 +305,7 @@ html, body {
 /* RESPONSIVE */
 @media (max-width: 1024px) {
     .contact-title {
-        font-size: 90px;
+        font-size: 80px;
     }
 }
 
@@ -272,19 +313,7 @@ html, body {
     html, body { overflow: auto; }
     
     .contact-split-layout {
-        flex-direction: column-reverse;
-    }
-    
-    .contact-text-side {
-        flex: 1;
-        padding: 100px 40px 80px;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .contact-content {
-        max-width: 100%;
+        flex-direction: column;
     }
     
     .contact-image-side {
@@ -292,26 +321,35 @@ html, body {
         width: 100%;
     }
     
-    .image-frame {
-        width: 85%;
-        max-width: 420px;
+    .contact-text-side {
+        flex: 1;
+        padding: 80px 40px;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .contact-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
     }
     
     .contact-title {
-        font-size: 68px;
+        font-size: 62px;
         letter-spacing: -2px;
-    }
-    
-    .contact-info {
-        margin-bottom: 50px;
-    }
-    
-    .info-item {
-        font-size: 17px;
     }
     
     .submit-btn {
         align-self: center;
+    }
+    
+    .image-frame {
+        width: 85%;
+        border-radius: 20px;
     }
 }
 </style>

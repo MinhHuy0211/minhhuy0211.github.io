@@ -13,13 +13,13 @@ theme = "PaperMod"
     ShowToc = true
     author = "Nguyễn Trịnh Minh Huy"
     description = "Portfolio & Blog chia sẻ kiến thức Lập trình mạng, Java Backend, JavaScript."
-
+customCSS = ["css/style.css"]
     # --- PROFILE ---
     [params.profileMode]
         enabled = true
         title = "Hi, I'm Nguyễn Trịnh Minh Huy 👋"
         subtitle = "Java Backend Developer | Network Engineering Student"
-        imageUrl = "anhdaidien.jpg"
+        imageUrl = "AVT.jpg"
         imageWidth = 150
         imageHeight = 150
 
@@ -42,7 +42,11 @@ theme = "PaperMod"
         name = "Blog"
         url = "/posts/"
         weight = 30
-
+[[menu.main]]
+        identifier = "certificates"
+        name = "Chứng chỉ"
+        url = "/certificates/"
+        weight = 35
     [[menu.main]]
         identifier = "contact"
         name = "Liên hệ"

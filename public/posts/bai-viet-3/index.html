@@ -14,67 +14,79 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
 <div class="article-wrapper">
     <article class="main-article">
         <header class="article-header">
-            <p class="article-meta">17 JANUARY 2025 — [JavaScript Async]</p>
+            <p class="article-meta">17 JANUARY 2025 — [JavaScript Async Callback Hell Promise Async/Await]</p>
             <h1 class="article-title">Bài 3: Callback Hell trong JavaScript và cách né tránh</h1>
         </header>
         
         <div class="article-content">
-            <p>Khi xử lý các tác vụ mạng (như gọi API), người mới học JS hay viết code lồng nhau kiểu này:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Cực hình Callback Hell
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">getData</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">a</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">b</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">b</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">c</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">c</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">d</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">d</span>);
+            <p>Trong JavaScript, hầu hết các thao tác bất đồng bộ (asynchronous) như gọi API, đọc file, setTimeout… đều sử dụng <strong>callback</strong> từ thời ES5 trở về trước. Khi các tác vụ phụ thuộc lẫn nhau, code dễ rơi vào tình trạng lồng ghép quá mức – được cộng đồng đặt tên hài hước nhưng rất chính xác: <strong>Callback Hell</strong> (Địa ngục callback).</p>
+<h3 id="1-callback-hell-trông-như-thế-nào">1. Callback Hell trông như thế nào?</h3>
+<p>Hãy tưởng tượng bạn cần thực hiện tuần tự 4 bước gọi API, mỗi bước phụ thuộc kết quả bước trước:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Ví dụ kinh điển của Callback Hell
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">getUser</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">user</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getProfile</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">profile</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getPosts</span>(<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">posts</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">getComments</span>(<span style="color:#a6e22e">posts</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">comments</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">getLikes</span>(<span style="color:#a6e22e">comments</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">likes</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Cuối cùng cũng xong:&#34;</span>, <span style="color:#a6e22e">likes</span>);
+</span></span><span style="display:flex;"><span>                });
 </span></span><span style="display:flex;"><span>            });
 </span></span><span style="display:flex;"><span>        });
 </span></span><span style="display:flex;"><span>    });
@@ -82,13 +94,17 @@
 </span></span></code></pre></div>  
         </div>
         <div class="article-content">
-            <p>Khi xử lý các tác vụ mạng (như gọi API), người mới học JS hay viết code lồng nhau kiểu này:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Cực hình Callback Hell
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">getData</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">a</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">b</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">b</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">c</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">getMoreData</span>(<span style="color:#a6e22e">c</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">d</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">d</span>);
+            <p>Trong JavaScript, hầu hết các thao tác bất đồng bộ (asynchronous) như gọi API, đọc file, setTimeout… đều sử dụng <strong>callback</strong> từ thời ES5 trở về trước. Khi các tác vụ phụ thuộc lẫn nhau, code dễ rơi vào tình trạng lồng ghép quá mức – được cộng đồng đặt tên hài hước nhưng rất chính xác: <strong>Callback Hell</strong> (Địa ngục callback).</p>
+<h3 id="1-callback-hell-trông-như-thế-nào">1. Callback Hell trông như thế nào?</h3>
+<p>Hãy tưởng tượng bạn cần thực hiện tuần tự 4 bước gọi API, mỗi bước phụ thuộc kết quả bước trước:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Ví dụ kinh điển của Callback Hell
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">getUser</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">user</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getProfile</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">profile</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getPosts</span>(<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">posts</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">getComments</span>(<span style="color:#a6e22e">posts</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">comments</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">getLikes</span>(<span style="color:#a6e22e">comments</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">likes</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Cuối cùng cũng xong:&#34;</span>, <span style="color:#a6e22e">likes</span>);
+</span></span><span style="display:flex;"><span>                });
 </span></span><span style="display:flex;"><span>            });
 </span></span><span style="display:flex;"><span>        });
 </span></span><span style="display:flex;"><span>    });
@@ -99,14 +115,14 @@
         <div class="post-navigation">
             
             <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-2/">
-                <span class="nav-label">← BÀI TRƯỚC</span>
+                <span class="nav-label">← QUAY LẠI</span>
                 
             </a>
             
 
             
             <a class="nav-btn next" href="https://minhhuy0211.github.io/posts/bai-viet-4/">
-                <span class="nav-label">BÀI TIẾP THEO →</span>
+                <span class="nav-label">TIẾP THEO →</span>
                 
             </a>
             

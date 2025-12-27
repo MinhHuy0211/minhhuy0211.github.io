@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Multithreading on Nguyễn Trịnh Minh Huy</title>
+    <link>https://minhhuy0211.github.io/tags/multithreading/</link>
+    <description>Recent content in Multithreading on Nguyễn Trịnh Minh Huy</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://minhhuy0211.github.io/tags/multithreading/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bài 9: Đa luồng (Multithreading) - Cách để Server tiếp 100 khách cùng lúc</title>
+      <link>https://minhhuy0211.github.io/posts/bai-viet-9/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://minhhuy0211.github.io/posts/bai-viet-9/</guid>
+      <description>Giải thích tại sao server đơn luồng chỉ phục vụ được một client, và cách dùng đa luồng (hoặc Thread Pool) để xử lý hàng trăm kết nối đồng thời một cách hiệu quả.</description>
+    </item>
+  </channel>
+</rss>

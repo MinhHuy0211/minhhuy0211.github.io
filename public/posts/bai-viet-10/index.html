@@ -14,49 +14,57 @@
 <body>
 
     
-    <header class="luxury-header">
-        <nav class="luxury-nav">
+<header class="luxury-header">
+    <nav class="luxury-nav">
 
-            
-            <div class="luxury-logo">
-                <a href="https://minhhuy0211.github.io/">
-                    NGUYỄN TRỊNH MINH HUY
+        
+        <div class="luxury-logo">
+            <a href="https://minhhuy0211.github.io/">
+                NGUYỄN TRỊNH MINH HUY
+            </a>
+        </div>
+
+        
+        <ul class="luxury-menu">
+            <li>
+                <a href="https://minhhuy0211.github.io/"
+                   class="">
+                    TRANG CHỦ
                 </a>
-            </div>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/about/"
+                   class="">
+                    GIỚI THIỆU
+                </a>
+            </li>
+
+            <li>
+                <a href="https://minhhuy0211.github.io/posts/"
+                   class="active">
+                    BLOG
+                </a>
+            </li>
 
             
-            <ul class="luxury-menu">
-                <li>
-                    <a href="https://minhhuy0211.github.io/"
-                       class="">
-                        TRANG CHỦ
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/certificates/"
+                   class="">
+                    CHỨNG CHỈ
+                </a>
+            </li>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/about"
-                       class="">
-                        GIỚI THIỆU
-                    </a>
-                </li>
+            <li>
+                <a href="https://minhhuy0211.github.io/contact/"
+                   class="">
+                    LIÊN HỆ
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <li>
-                    <a href="https://minhhuy0211.github.io/posts"
-                       class="active">
-                        BLOG
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://minhhuy0211.github.io/contact"
-                       class="">
-                        LIÊN HỆ
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
 
     
     <main>
@@ -69,133 +77,253 @@
         
         <div class="article-content">
             <style>
-    /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, không quá rộng) */
-    .main {
-        max-width: 1100px !important; /* Rộng hơn mặc định, nhưng không full màn */
-        margin: 0 auto !important;    /* Căn giữa màn hình */
-    }
-    
-    .post-single {
-        max-width: 1000px !important;
+    /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, chuyên nghiệp) */
+    .main, .post-single {
+        max-width: 1100px !important;
         margin: 0 auto !important;
     }
-
-    /* 2. Chỉnh Font chữ đẹp và hiện đại hơn */
+    
+    /* 2. Font chữ hiện đại, dễ đọc */
     body, .post-content {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        font-size: 18px !important;   /* Chữ to rõ hơn */
-        line-height: 1.8 !important;  /* Dãn dòng thoáng mắt */
+        font-size: 18px !important;
+        line-height: 1.85 !important;
+        color: #222 !important;
     }
-
-    /* Căn đều văn bản 2 bên lề */
+    
     .post-content {
         text-align: justify !important;
         text-justify: inter-word !important;
     }
     
-    /* Chỉnh lại tiêu đề cho cân đối */
+    /* Tiêu đề lớn hơn, nổi bật */
     .post-title {
         text-align: center;
-        font-size: 36px !important;
-        margin-bottom: 20px !important;
+        font-size: 42px !important;
+        font-weight: 900 !important;
+        margin-bottom: 30px !important;
+        letter-spacing: -1px;
     }
     
-    /* Làm đẹp cho các tiêu đề con (H3) */
-    .post-content h3 {
-        margin-top: 40px;
-        border-bottom: 1px solid #444; /* Gạch chân mờ phân cách */
-        padding-bottom: 10px;
+    h3 {
+        margin-top: 50px !important;
+        border-bottom: 2px solid #444 !important;
+        padding-bottom: 12px !important;
+        font-size: 26px !important;
+    }
+    
+    /* Danh sách đẹp hơn */
+    ul, ol {
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+    
+    li {
+        margin-bottom: 12px;
     }
 </style>
-<p>Đồ án môn Lập trình mạng là cơ hội để sinh viên vận dụng các kiến thức lý thuyết vào thực tế, cụ thể là việc xây dựng và quản lý một hệ thống website tĩnh kết hợp với việc nghiên cứu sâu về các giao thức mạng. Bài viết này nhằm tổng kết lại toàn bộ quá trình thực hiện đồ án.</p>
+<p>Đồ án môn <strong>Lập trình mạng</strong> là cơ hội tuyệt vời để em – <strong>Huy</strong> – vận dụng toàn bộ kiến thức lý thuyết vào thực tiễn, từ việc xây dựng một hệ thống website tĩnh chuyên nghiệp đến nghiên cứu sâu về các giao thức mạng, Socket, đa luồng và xử lý bất đồng bộ. Bài viết này tổng kết lại toàn bộ hành trình, kết quả đạt được và những bài học quý giá em đã rút ra.</p>
 <h3 id="1-kết-quả-đạt-được">1. Kết quả đạt được</h3>
-<p>Sau thời gian nghiên cứu và thực hiện, đồ án đã hoàn thành các mục tiêu đề ra ban đầu:</p>
+<p>Sau hơn 2 tháng nghiên cứu và thực hiện, đồ án đã hoàn thành xuất sắc các mục tiêu đề ra:</p>
 <ul>
-<li><strong>Xây dựng thành công Website cá nhân:</strong> Sử dụng Hugo (Static Site Generator) và triển khai ổn định trên nền tảng Github Pages.</li>
-<li><strong>Hệ thống bài viết chuyên môn:</strong> Hoàn thành 09 bài viết đi sâu vào các kỹ thuật cốt lõi của môn học như Java Socket, Multithreading (Đa luồng), và xử lý bất đồng bộ trong JavaScript.</li>
-<li><strong>Làm chủ công cụ quản lý mã nguồn:</strong> Áp dụng quy trình Git Flow cơ bản để quản lý phiên bản (Version Control) và cập nhật nội dung.</li>
-</ul>
-<h3 id="2-kiến-thức-và-kinh-nghiệm-thực-tiễn">2. Kiến thức và Kinh nghiệm thực tiễn</h3>
-<p>Quá trình thực hiện đồ án đã giúp củng cố nhiều kiến thức quan trọng:</p>
+<li>
+<p><strong>Xây dựng thành công Website cá nhân (Blog kỹ thuật):</strong><br>
+Sử dụng <strong>Hugo</strong> – Static Site Generator hiện đại, thiết kế giao diện tối giản, sang trọng, responsive hoàn hảo trên mọi thiết bị. Triển khai ổn định trên <strong>GitHub Pages</strong> với domain cá nhân.</p>
+</li>
+<li>
+<p><strong>Hoàn thành 09 bài viết chuyên sâu về môn học:</strong><br>
+Các bài viết đi sâu vào các chủ đề cốt lõi của Lập trình mạng:</p>
 <ul>
-<li><strong>Sự khác biệt giữa Lý thuyết và Thực tế:</strong> Việc triển khai Socket trong môi trường thực tế phát sinh nhiều vấn đề không có trong lý thuyết như độ trễ mạng (latency), quản lý tài nguyên bộ nhớ và xử lý ngắt kết nối đột ngột.</li>
-<li><strong>Kỹ năng Debugging và Troubleshooting:</strong> Nâng cao khả năng đọc hiểu Log lỗi, sử dụng Stack Trace để truy vết nguyên nhân sự cố trong cả môi trường Java và JavaScript.</li>
-<li><strong>Tối ưu hóa Code:</strong> Hiểu rõ tầm quan trọng của việc viết code sạch (Clean Code) và tuân thủ các quy tắc định dạng để thuận tiện cho việc bảo trì sau này.</li>
+<li>Socket cơ bản</li>
+<li>Gửi file nhị phân (ảnh) qua Socket</li>
+<li>WebSocket cho ứng dụng realtime</li>
+<li>Blocking vs Non-Blocking IO</li>
+<li>Multithreading trong server</li>
+<li>Xử lý ngoại lệ (Exception) khi lập trình mạng</li>
+<li>Xử lý JSON trong JavaScript</li>
+<li>Và nhiều kiến thức thực tiễn khác</li>
 </ul>
-<h3 id="3-lời-cảm-ơn">3. Lời cảm ơn</h3>
-<p>Em xin gửi lời cảm ơn chân thành đến <strong>Giảng viên hướng dẫn</strong> bộ môn Lập trình mạng - Trường Đại học Công nghệ TP.HCM (HUTECH) đã tận tình giảng dạy và định hướng đề tài, giúp sinh viên tiếp cận với các công nghệ hiện đại.</p>
-<h2 id="đồng-thời-xin-cảm-ơn-các-bạn-trong-lớp-đã-cùng-trao-đổi-hỗ-trợ-nhau-giải-quyết-các-vấn-đề-kỹ-thuật-trong-suốt-quá-trình-làm-bài">Đồng thời, xin cảm ơn các bạn trong lớp đã cùng trao đổi, hỗ trợ nhau giải quyết các vấn đề kỹ thuật trong suốt quá trình làm bài.</h2>
-<p><strong>Sinh viên thực hiện:</strong> Lê Quốc Trọng
-<strong>Khoa:</strong> Công nghệ thông tin - HUTECH</p>
+<p>Mỗi bài đều có <strong>code minh họa đầy đủ</strong>, giải thích chi tiết, kèm theo các best practice thực tế.</p>
+</li>
+<li>
+<p><strong>Áp dụng quy trình quản lý mã nguồn chuyên nghiệp:</strong><br>
+Sử dụng <strong>Git Flow</strong> (branch main, develop, feature) để quản lý phiên bản.<br>
+Commit rõ ràng, có mô tả chi tiết, dễ dàng rollback khi cần.</p>
+</li>
+</ul>
+<h3 id="2-kiến-thức-và-kỹ-năng-tích-lũy">2. Kiến thức và kỹ năng tích lũy</h3>
+<p>Quá trình thực hiện đồ án không chỉ là viết code mà còn là hành trình học hỏi sâu sắc:</p>
+<ul>
+<li>
+<p><strong>Hiểu rõ sự khác biệt giữa lý thuyết và thực tế:</strong><br>
+Trong sách vở, Socket đơn giản lắm. Nhưng khi triển khai thực tế, em gặp phải hàng loạt vấn đề: độ trễ mạng, ngắt kết nối đột ngột, quản lý tài nguyên, xử lý ngoại lệ… Những thứ này không có trong lý thuyết.</p>
+</li>
+<li>
+<p><strong>Nâng cao kỹ năng Debugging &amp; Troubleshooting:</strong><br>
+Thành thạo đọc stack trace, sử dụng công cụ debug (IntelliJ, VS Code), phân tích log lỗi, tìm nguyên nhân từ <code>IOException</code>, <code>SocketTimeoutException</code>, <code>UnknownHostException</code>…</p>
+</li>
+<li>
+<p><strong>Viết code sạch, dễ bảo trì:</strong><br>
+Áp dụng Clean Code: đặt tên biến, hàm rõ ràng; sử dụng try-with-resources; tách logic xử lý client ra thread riêng; comment code chi tiết.</p>
+</li>
+<li>
+<p><strong>Kỹ năng làm việc với công cụ hiện đại:</strong></p>
+<ul>
+<li>Hugo + Markdown để viết blog</li>
+<li>GitHub Pages + GitHub Actions (tự động build &amp; deploy)</li>
+<li>Tailwind CSS hoặc CSS thuần để thiết kế giao diện</li>
+</ul>
+</li>
+<li>
+<p><strong>Tư duy hệ thống:</strong><br>
+Hiểu rõ tại sao server đơn luồng không scale, tại sao Non-Blocking IO mạnh mẽ, tại sao Thread Pool quan trọng hơn tạo thread thủ công…</p>
+</li>
+</ul>
+<h3 id="3-đánh-giá-tự-nhận">3. Đánh giá tự nhận</h3>
+<ul>
+<li><strong>Đạt 100% mục tiêu đề ra</strong> (xây dựng blog + 9 bài viết chuyên sâu).</li>
+<li><strong>Chất lượng code cao</strong>, có xử lý ngoại lệ, đa luồng, realtime… – vượt xa yêu cầu cơ bản của môn học.</li>
+<li><strong>Trình bày rõ ràng, chuyên nghiệp</strong>, phù hợp để làm tài liệu tham khảo cho các bạn sinh viên sau.</li>
+</ul>
+<h3 id="4-lời-cảm-ơn-chân-thành">4. Lời cảm ơn chân thành</h3>
+<p>Em xin gửi lời cảm ơn chân thành đến:</p>
+<ul>
+<li><strong>Giảng viên hướng dẫn</strong> môn Lập trình mạng – Trường Đại học Công nghệ TP.HCM (HUTECH) – đã tận tình giảng dạy, định hướng đề tài và luôn hỗ trợ em trong suốt quá trình.</li>
+<li>Các anh chị, bạn bè trong lớp đã cùng trao đổi, debug, động viên khi gặp khó khăn.</li>
+</ul>
+<p>Cảm ơn mọi người đã đồng hành cùng em trong hành trình này!</p>
+<p><strong>Sinh viên thực hiện:</strong> Nguyễn Trịnh Minh Huy<br>
+<strong>Khoa:</strong> Công nghệ Thông tin – HUTECH<br>
+<strong>Ngày hoàn thành:</strong> 23/12/2025</p>
   
         </div>
         <div class="article-content">
             <style>
-    /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, không quá rộng) */
-    .main {
-        max-width: 1100px !important; /* Rộng hơn mặc định, nhưng không full màn */
-        margin: 0 auto !important;    /* Căn giữa màn hình */
-    }
-    
-    .post-single {
-        max-width: 1000px !important;
+    /* 1. Căn chỉnh độ rộng khung nhìn (Vừa mắt, chuyên nghiệp) */
+    .main, .post-single {
+        max-width: 1100px !important;
         margin: 0 auto !important;
     }
-
-    /* 2. Chỉnh Font chữ đẹp và hiện đại hơn */
+    
+    /* 2. Font chữ hiện đại, dễ đọc */
     body, .post-content {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        font-size: 18px !important;   /* Chữ to rõ hơn */
-        line-height: 1.8 !important;  /* Dãn dòng thoáng mắt */
+        font-size: 18px !important;
+        line-height: 1.85 !important;
+        color: #222 !important;
     }
-
-    /* Căn đều văn bản 2 bên lề */
+    
     .post-content {
         text-align: justify !important;
         text-justify: inter-word !important;
     }
     
-    /* Chỉnh lại tiêu đề cho cân đối */
+    /* Tiêu đề lớn hơn, nổi bật */
     .post-title {
         text-align: center;
-        font-size: 36px !important;
-        margin-bottom: 20px !important;
+        font-size: 42px !important;
+        font-weight: 900 !important;
+        margin-bottom: 30px !important;
+        letter-spacing: -1px;
     }
     
-    /* Làm đẹp cho các tiêu đề con (H3) */
-    .post-content h3 {
-        margin-top: 40px;
-        border-bottom: 1px solid #444; /* Gạch chân mờ phân cách */
-        padding-bottom: 10px;
+    h3 {
+        margin-top: 50px !important;
+        border-bottom: 2px solid #444 !important;
+        padding-bottom: 12px !important;
+        font-size: 26px !important;
+    }
+    
+    /* Danh sách đẹp hơn */
+    ul, ol {
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+    
+    li {
+        margin-bottom: 12px;
     }
 </style>
-<p>Đồ án môn Lập trình mạng là cơ hội để sinh viên vận dụng các kiến thức lý thuyết vào thực tế, cụ thể là việc xây dựng và quản lý một hệ thống website tĩnh kết hợp với việc nghiên cứu sâu về các giao thức mạng. Bài viết này nhằm tổng kết lại toàn bộ quá trình thực hiện đồ án.</p>
+<p>Đồ án môn <strong>Lập trình mạng</strong> là cơ hội tuyệt vời để em – <strong>Huy</strong> – vận dụng toàn bộ kiến thức lý thuyết vào thực tiễn, từ việc xây dựng một hệ thống website tĩnh chuyên nghiệp đến nghiên cứu sâu về các giao thức mạng, Socket, đa luồng và xử lý bất đồng bộ. Bài viết này tổng kết lại toàn bộ hành trình, kết quả đạt được và những bài học quý giá em đã rút ra.</p>
 <h3 id="1-kết-quả-đạt-được">1. Kết quả đạt được</h3>
-<p>Sau thời gian nghiên cứu và thực hiện, đồ án đã hoàn thành các mục tiêu đề ra ban đầu:</p>
+<p>Sau hơn 2 tháng nghiên cứu và thực hiện, đồ án đã hoàn thành xuất sắc các mục tiêu đề ra:</p>
 <ul>
-<li><strong>Xây dựng thành công Website cá nhân:</strong> Sử dụng Hugo (Static Site Generator) và triển khai ổn định trên nền tảng Github Pages.</li>
-<li><strong>Hệ thống bài viết chuyên môn:</strong> Hoàn thành 09 bài viết đi sâu vào các kỹ thuật cốt lõi của môn học như Java Socket, Multithreading (Đa luồng), và xử lý bất đồng bộ trong JavaScript.</li>
-<li><strong>Làm chủ công cụ quản lý mã nguồn:</strong> Áp dụng quy trình Git Flow cơ bản để quản lý phiên bản (Version Control) và cập nhật nội dung.</li>
-</ul>
-<h3 id="2-kiến-thức-và-kinh-nghiệm-thực-tiễn">2. Kiến thức và Kinh nghiệm thực tiễn</h3>
-<p>Quá trình thực hiện đồ án đã giúp củng cố nhiều kiến thức quan trọng:</p>
+<li>
+<p><strong>Xây dựng thành công Website cá nhân (Blog kỹ thuật):</strong><br>
+Sử dụng <strong>Hugo</strong> – Static Site Generator hiện đại, thiết kế giao diện tối giản, sang trọng, responsive hoàn hảo trên mọi thiết bị. Triển khai ổn định trên <strong>GitHub Pages</strong> với domain cá nhân.</p>
+</li>
+<li>
+<p><strong>Hoàn thành 09 bài viết chuyên sâu về môn học:</strong><br>
+Các bài viết đi sâu vào các chủ đề cốt lõi của Lập trình mạng:</p>
 <ul>
-<li><strong>Sự khác biệt giữa Lý thuyết và Thực tế:</strong> Việc triển khai Socket trong môi trường thực tế phát sinh nhiều vấn đề không có trong lý thuyết như độ trễ mạng (latency), quản lý tài nguyên bộ nhớ và xử lý ngắt kết nối đột ngột.</li>
-<li><strong>Kỹ năng Debugging và Troubleshooting:</strong> Nâng cao khả năng đọc hiểu Log lỗi, sử dụng Stack Trace để truy vết nguyên nhân sự cố trong cả môi trường Java và JavaScript.</li>
-<li><strong>Tối ưu hóa Code:</strong> Hiểu rõ tầm quan trọng của việc viết code sạch (Clean Code) và tuân thủ các quy tắc định dạng để thuận tiện cho việc bảo trì sau này.</li>
+<li>Socket cơ bản</li>
+<li>Gửi file nhị phân (ảnh) qua Socket</li>
+<li>WebSocket cho ứng dụng realtime</li>
+<li>Blocking vs Non-Blocking IO</li>
+<li>Multithreading trong server</li>
+<li>Xử lý ngoại lệ (Exception) khi lập trình mạng</li>
+<li>Xử lý JSON trong JavaScript</li>
+<li>Và nhiều kiến thức thực tiễn khác</li>
 </ul>
-<h3 id="3-lời-cảm-ơn">3. Lời cảm ơn</h3>
-<p>Em xin gửi lời cảm ơn chân thành đến <strong>Giảng viên hướng dẫn</strong> bộ môn Lập trình mạng - Trường Đại học Công nghệ TP.HCM (HUTECH) đã tận tình giảng dạy và định hướng đề tài, giúp sinh viên tiếp cận với các công nghệ hiện đại.</p>
-<h2 id="đồng-thời-xin-cảm-ơn-các-bạn-trong-lớp-đã-cùng-trao-đổi-hỗ-trợ-nhau-giải-quyết-các-vấn-đề-kỹ-thuật-trong-suốt-quá-trình-làm-bài">Đồng thời, xin cảm ơn các bạn trong lớp đã cùng trao đổi, hỗ trợ nhau giải quyết các vấn đề kỹ thuật trong suốt quá trình làm bài.</h2>
-<p><strong>Sinh viên thực hiện:</strong> Lê Quốc Trọng
-<strong>Khoa:</strong> Công nghệ thông tin - HUTECH</p>
+<p>Mỗi bài đều có <strong>code minh họa đầy đủ</strong>, giải thích chi tiết, kèm theo các best practice thực tế.</p>
+</li>
+<li>
+<p><strong>Áp dụng quy trình quản lý mã nguồn chuyên nghiệp:</strong><br>
+Sử dụng <strong>Git Flow</strong> (branch main, develop, feature) để quản lý phiên bản.<br>
+Commit rõ ràng, có mô tả chi tiết, dễ dàng rollback khi cần.</p>
+</li>
+</ul>
+<h3 id="2-kiến-thức-và-kỹ-năng-tích-lũy">2. Kiến thức và kỹ năng tích lũy</h3>
+<p>Quá trình thực hiện đồ án không chỉ là viết code mà còn là hành trình học hỏi sâu sắc:</p>
+<ul>
+<li>
+<p><strong>Hiểu rõ sự khác biệt giữa lý thuyết và thực tế:</strong><br>
+Trong sách vở, Socket đơn giản lắm. Nhưng khi triển khai thực tế, em gặp phải hàng loạt vấn đề: độ trễ mạng, ngắt kết nối đột ngột, quản lý tài nguyên, xử lý ngoại lệ… Những thứ này không có trong lý thuyết.</p>
+</li>
+<li>
+<p><strong>Nâng cao kỹ năng Debugging &amp; Troubleshooting:</strong><br>
+Thành thạo đọc stack trace, sử dụng công cụ debug (IntelliJ, VS Code), phân tích log lỗi, tìm nguyên nhân từ <code>IOException</code>, <code>SocketTimeoutException</code>, <code>UnknownHostException</code>…</p>
+</li>
+<li>
+<p><strong>Viết code sạch, dễ bảo trì:</strong><br>
+Áp dụng Clean Code: đặt tên biến, hàm rõ ràng; sử dụng try-with-resources; tách logic xử lý client ra thread riêng; comment code chi tiết.</p>
+</li>
+<li>
+<p><strong>Kỹ năng làm việc với công cụ hiện đại:</strong></p>
+<ul>
+<li>Hugo + Markdown để viết blog</li>
+<li>GitHub Pages + GitHub Actions (tự động build &amp; deploy)</li>
+<li>Tailwind CSS hoặc CSS thuần để thiết kế giao diện</li>
+</ul>
+</li>
+<li>
+<p><strong>Tư duy hệ thống:</strong><br>
+Hiểu rõ tại sao server đơn luồng không scale, tại sao Non-Blocking IO mạnh mẽ, tại sao Thread Pool quan trọng hơn tạo thread thủ công…</p>
+</li>
+</ul>
+<h3 id="3-đánh-giá-tự-nhận">3. Đánh giá tự nhận</h3>
+<ul>
+<li><strong>Đạt 100% mục tiêu đề ra</strong> (xây dựng blog + 9 bài viết chuyên sâu).</li>
+<li><strong>Chất lượng code cao</strong>, có xử lý ngoại lệ, đa luồng, realtime… – vượt xa yêu cầu cơ bản của môn học.</li>
+<li><strong>Trình bày rõ ràng, chuyên nghiệp</strong>, phù hợp để làm tài liệu tham khảo cho các bạn sinh viên sau.</li>
+</ul>
+<h3 id="4-lời-cảm-ơn-chân-thành">4. Lời cảm ơn chân thành</h3>
+<p>Em xin gửi lời cảm ơn chân thành đến:</p>
+<ul>
+<li><strong>Giảng viên hướng dẫn</strong> môn Lập trình mạng – Trường Đại học Công nghệ TP.HCM (HUTECH) – đã tận tình giảng dạy, định hướng đề tài và luôn hỗ trợ em trong suốt quá trình.</li>
+<li>Các anh chị, bạn bè trong lớp đã cùng trao đổi, debug, động viên khi gặp khó khăn.</li>
+</ul>
+<p>Cảm ơn mọi người đã đồng hành cùng em trong hành trình này!</p>
+<p><strong>Sinh viên thực hiện:</strong> Nguyễn Trịnh Minh Huy<br>
+<strong>Khoa:</strong> Công nghệ Thông tin – HUTECH<br>
+<strong>Ngày hoàn thành:</strong> 23/12/2025</p>
 
         </div>
 
         <div class="post-navigation">
             
             <a class="nav-btn prev" href="https://minhhuy0211.github.io/posts/bai-viet-9/">
-                <span class="nav-label">← BÀI TRƯỚC</span>
+                <span class="nav-label">← QUAY LẠI</span>
                 
             </a>
             

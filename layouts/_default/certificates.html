@@ -1,0 +1,353 @@
+{{ define "main" }}
+
+<style>
+    /* Biến màu sắc & Cấu hình chung */
+    :root {
+        --primary-color: #00bfa5;
+        --primary-hover: #00897b;
+        --bg-color: #f4f7f6;
+        --text-main: #333;
+        --text-secondary: #666;
+        --card-bg: #ffffff;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+        --shadow-hover: 0 20px 40px rgba(0,191,165,0.15);
+    }
+
+    /* Wrapper chính bao quanh nội dung để tạo khoảng cách với Header/Footer của web */
+    .cert-page-wrapper {
+        background-color: var(--bg-color);
+        padding: 4rem 1rem;
+        min-height: 80vh; /* Đảm bảo trang có độ cao tối thiểu */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-main);
+    }
+
+    .cert-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Header của trang Certificates */
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .page-description {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Layout chia cột (Trái: Profile - Phải: Certs) */
+    .cert-split-new {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    /* --- CỘT TRÁI: Profile --- */
+    .profile-left-section {
+        flex: 1;
+        min-width: 320px;
+        position: sticky;
+        top: 2rem; /* Sticky khi cuộn */
+        align-self: start;
+    }
+
+    .profile-card-new {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid #eee;
+        margin-bottom: 30px;
+    }
+
+    .avatar-container img.profile-avatar-new {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary-color);
+        padding: 3px;
+        background: #fff;
+    }
+
+    .profile-name-new {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin: 20px 0 5px;
+        font-weight: 700;
+    }
+
+    .profile-fullname {
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .profile-bio-new {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        padding: 15px 0;
+        border-top: 1px dashed #ddd;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    .profile-links-new a {
+        display: block;
+        margin: 10px 0;
+        padding: 12px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .profile-links-new a:hover {
+        background: var(--primary-hover);
+        transform: translateY(-3px);
+    }
+
+    /* Các cert nhỏ bên trái */
+    .extra-certs-left {
+        margin-top: 30px;
+    }
+
+    .extra-certs-left .cert-card-new {
+        margin-bottom: 20px;
+        flex-direction: row; /* Ngang cho cert nhỏ */
+        align-items: center;
+    }
+
+    .extra-certs-left .cert-card-new img {
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        border-right: 1px solid #eee;
+    }
+
+    .extra-certs-left .cert-info-new h3 {
+        font-size: 1.1rem;
+    }
+
+    /* --- CỘT PHẢI: Main Certs --- */
+    .cert-right-section {
+        flex: 2;
+        min-width: 320px;
+    }
+
+    .cert-grid-new {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    /* Style chung cho thẻ Cert */
+    .cert-card-new {
+        display: flex;
+        background: var(--card-bg);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        transition: all 0.4s ease;
+        border-left: 5px solid var(--primary-color);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .cert-card-new:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .cert-card-new img {
+        width: 140px;
+        height: auto;
+        min-height: 140px;
+        object-fit: contain;
+        background: #fff;
+        padding: 15px;
+        border-right: 1px solid #eee;
+    }
+
+    .cert-info-new {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .cert-info-new h3 {
+        margin: 0 0 8px;
+        color: var(--primary-color);
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+
+    .cert-info-new p {
+        margin: 0 0 10px;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .issuer {
+        font-size: 0.85rem;
+        color: #999;
+        margin-bottom: 10px;
+        font-style: italic;
+    }
+
+    .view-link {
+        color: var(--primary-color);
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 900px) {
+        .cert-split-new {
+            flex-direction: column; /* Đưa cột trái lên trên */
+        }
+
+        .profile-left-section {
+            width: 100%;
+            position: static;
+        }
+
+        .cert-card-new {
+            flex-direction: column; /* Ảnh lên trên text */
+        }
+
+        .cert-card-new img {
+            width: 100%;
+            height: 180px;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Giữ cert nhỏ bên trái nằm ngang cho đẹp */
+        .extra-certs-left .cert-card-new {
+            flex-direction: row;
+        }
+        .extra-certs-left .cert-card-new img {
+            width: 90px;
+            height: 90px;
+            border-bottom: none;
+            border-right: 1px solid #eee;
+        }
+    }
+</style>
+
+<div class="cert-page-wrapper">
+    <div class="cert-container">
+        
+        <header class="page-header">
+            <h1>CHỨNG CHỈ 🏆</h1>
+            <div class="page-description">Một số chứng chỉ mình đã hoàn thành trong hành trình học tập và phát triển bản thân.</div>
+        </header>
+
+        <div class="cert-split-new">
+            
+            <aside class="profile-left-section">
+                <div class="profile-card-new">
+                    <div class="avatar-container">
+                        <img class="profile-avatar-new" src="/huymtp.jpg" alt="Nguyễn Trình Huy" loading="lazy" />
+                    </div>
+
+                    <h2 class="profile-name-new">Minh Huy</h2>
+                    <p class="profile-fullname">Nguyễn Trịnh Minh Huy</p>
+
+                    <div class="profile-bio-new">
+                        Sinh viên CNTT • HUTECH<br/>
+                        Đam mê Java • JavaScript • Networking<br/>
+                        Hướng đi: Full-stack Developer &amp; Network Engineer
+                    </div>
+
+                    <div class="profile-links-new">
+                        <a href="https://github.com/MinhHuy0211" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://www.facebook.com/yTee.minhhuy2004" target="_blank" rel="noopener">Facebook</a>
+                    </div>
+                </div>
+
+                <div class="extra-certs-left">
+                    <div class="cert-card-new extra-cert">
+                        <img src="https://baoxinviec.shop/wp-content/uploads/2019/11/dich-vu-mua-chung-chi-tieng-anh-lay-ngay-uy-tin-nhat-2-600x410.jpg" alt="Bằng Ngoại Ngữ B1">
+                        <div class="cert-info-new">
+                            <h3>Bằng Tiếng Anh B1</h3>
+                            <p>Trình độ tiếng anh B1</p>
+                            <span class="issuer">HUTECH 2025</span>
+                        </div>
+                    </div>
+
+                    <div class="cert-card-new extra-cert">
+                        <img src="https://maisonoffice.vn/wp-content/uploads/2023/08/cac-ky-nang-can-thiet-3.jpeg" alt="Chứng chỉ kỹ năng giao tiếp">
+                        <div class="cert-info-new">
+                            <h3>Teamwork Skills</h3>
+                            <p>Kỹ năng thiết yếu.</p>
+                            <span class="issuer">Good at teamwork 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="cert-right-section">
+                <div class="cert-grid-new">
+
+                    <a class="cert-card-new" href="https://www.credly.com/badges/151837eb-3bd8-40dd-b566-36f54787ce4b/public_url" target="_blank" rel="noopener">
+                        <img src="https://media.licdn.com/dms/image/v2/D5610AQFa0dASmGmbRw/image-shrink_1280/image-shrink_1280/0/1700113393456?e=2147483647&v=beta&t=6C7k_ZUwKcOTEGCYrdTY-YgjXcMiVtEd7SOfYHzCLAs" alt="JavaScript Essentials 1 Badge">
+                        <div class="cert-info-new">
+                            <h3>JavaScript Essentials 1</h3>
+                            <p>Nền tảng JavaScript: biến, điều kiện, vòng lặp, function, DOM cơ bản &amp; thuật toán.</p>
+                            <span class="issuer">Cisco Networking Academy • Dec 2025</span>
+                            <span class="view-link">Xem trên Credly →</span>
+                        </div>
+                    </a>
+
+                    <a class="cert-card-new" href="https://www.credly.com/badges/ed11f26a-854e-47d3-8d95-2fb881c5c0b3/public_url" target="_blank" rel="noopener">
+                        <img src="https://images.credly.com/images/e090c1e1-dbd4-40f8-bbb3-93cc07884d7f/linkedin_thumb_image.png" alt="JavaScript Essentials 2 Badge">
+                        <div class="cert-info-new">
+                            <h3>JavaScript Essentials 2</h3>
+                            <p>Nâng cao: OOP, Promise, async/await, modules, xử lý lỗi &amp; dữ liệu phức tạp.</p>
+                            <span class="issuer">Cisco Networking Academy • Dec 2025</span>
+                            <span class="view-link">Xem trên Credly →</span>
+                        </div>
+                    </a>
+
+                    <a class="cert-card-new" href="https://www.credly.com/badges/075fd78e-c3b3-4ad9-823a-2e88535e58bb/public_url" target="_blank" rel="noopener">
+                        <img src="https://images.credly.com/images/5bdd6a39-3e03-4444-9510-ecff80c9ce79/linkedin_thumb_image.png" alt="Networking Basics Badge">
+                        <div class="cert-info-new">
+                            <h3>Networking Basics</h3>
+                            <p>TCP/IP, OSI model, IP addressing, routing/switching &amp; xây dựng mạng cơ bản.</p>
+                            <span class="issuer">Cisco Networking Academy • Nov 2025</span>
+                            <span class="view-link">Xem trên Credly →</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ end }}
